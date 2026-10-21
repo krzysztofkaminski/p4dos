@@ -1,0 +1,6 @@
+# On top of sdkconfig.defaults, for boards with chip revision v3.x (P4DOS_REV3=1 ./build.sh):
+# a build for revisions below v3.0 does not start on these, nor the other way round.
+CONFIG_ESP32P4_SELECTS_REV_LESS_V3=n
+CONFIG_ESP32P4_REV_MIN_301=y
+# The board with a v3.2 chip has the second generation of the glass.
+CONFIG_P4DOS_LCD_NEW_PANEL=y

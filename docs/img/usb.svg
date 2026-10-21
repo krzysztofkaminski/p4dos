@@ -1,0 +1,93 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 520" width="880" height="520" role="img" aria-labelledby="t d">
+<title id="t">USB on the board</title>
+<desc id="d">The upper USB-C port is the P4's USB-Serial-JTAG: a terminal, tools/hostdisk.py or esptool on the PC talk to the console task on core 0, which sends the text screen as ANSI and passes keys and host disk frames to the emulated PC. The middle port is USB 2.0 high-speed OTG run as host: keyboards, mice, hubs and Logitech Unifying receivers go through ESP-IDF's USB host library and HID driver on core 0; keyboard reports become XT scancodes at port 60h with IRQ 1, mouse reports drive a Microsoft serial mouse on COM1 with IRQ 4 for CTMOUSE. The lower port's CH340 UART bridge is not used by the firmware.</desc>
+<style>.bg{fill:#fcfcfb;stroke:#e1e0d9}text{font-family:system-ui,-apple-system,"Segoe UI",Helvetica,Arial,sans-serif;fill:#0b0b0b}.t2{fill:#52514e}.tm{fill:#898781}.grid{stroke:#e1e0d9}.axis{stroke:#c3c2b7}.box{fill:#f3f2ee;stroke:#c3c2b7}.acc{fill:#e3eefc;stroke:#2a78d6}.band{fill:#f7f6f3;stroke:#e1e0d9}.s1{fill:#2a78d6}.s2{fill:#eb6834}.s3{fill:#1baf7a}.s4{fill:#eda100}.free{fill:#dddcd5}.prev{fill:#b9b8b0}.w1{fill:#dbe9fb}.w2{fill:#fbe3d8}.w3{fill:#d5f1e6}.w0{fill:#eeede8}.ln{stroke:#52514e;fill:none}.hd{fill:#52514e}.lead{stroke:#898781;fill:none}.gap{stroke:#fcfcfb}.mono{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace}.b{font-weight:600}.ln{stroke-width:1.4}.lead{stroke-width:1}.bg{stroke-width:1}.box,.acc,.band{stroke-width:1}.grid,.axis{stroke-width:1}@media (prefers-color-scheme:dark){.bg{fill:#1a1a19;stroke:#2c2c2a}text{font-family:system-ui,-apple-system,"Segoe UI",Helvetica,Arial,sans-serif;fill:#f0efec}.t2{fill:#c3c2b7}.tm{fill:#898781}.grid{stroke:#2c2c2a}.axis{stroke:#45453f}.box{fill:#252524;stroke:#4a4a45}.acc{fill:#14273f;stroke:#3987e5}.band{fill:#20201f;stroke:#2c2c2a}.s1{fill:#3987e5}.s2{fill:#d95926}.s3{fill:#199e70}.s4{fill:#c98500}.free{fill:#3a3a37}.prev{fill:#5d5c57}.w1{fill:#172c47}.w2{fill:#43241a}.w3{fill:#12362a}.w0{fill:#2a2a28}.ln{stroke:#c3c2b7;fill:none}.hd{fill:#c3c2b7}.lead{stroke:#898781;fill:none}.gap{stroke:#1a1a19}}</style>
+<rect x="0.5" y="0.5" width="879" height="519" rx="10" class="bg"/>
+<text x="24" y="32" font-size="16" class="b">USB</text>
+<text x="24" y="52" font-size="12.5" class="t2">Three USB-C ports; the firmware uses the upper and the middle one. Any of them powers the board.</text>
+<text x="24" y="92" font-size="12" class="tm">Outside</text>
+<text x="228" y="92" font-size="12" class="tm">Board</text>
+<text x="420" y="92" font-size="12" class="tm">Core 0</text>
+<text x="644" y="92" font-size="12" class="tm">Core 1: the emulated PC</text>
+<rect x="24" y="102" width="180" height="96" rx="6" class="box"/>
+<text x="35" y="122" font-size="12.5" class="b">On the PC</text>
+<text x="35" y="140" font-size="11.5" class="t2">a terminal (screen,</text>
+<text x="35" y="154.5" font-size="11.5" class="t2">picocom, minicom),</text>
+<text x="35" y="169" font-size="11.5" class="t2">tools/hostdisk.py or</text>
+<text x="35" y="183.5" font-size="11.5" class="t2">esptool, one at a time</text>
+<rect x="228" y="102" width="168" height="96" rx="6" class="acc"/>
+<text x="239" y="122" font-size="12.5" class="b">Upper USB-C</text>
+<text x="239" y="140" font-size="11.5" class="t2">USB-Serial-JTAG in</text>
+<text x="239" y="154.5" font-size="11.5" class="t2">the P4, full speed;</text>
+<text x="239" y="169" font-size="11.5" class="t2">/dev/ttyACM0</text>
+<rect x="420" y="102" width="200" height="96" rx="6" class="box"/>
+<text x="431" y="122" font-size="12.5" class="b">console task</text>
+<text x="431" y="140" font-size="11.5" class="t2">text screen out as ANSI,</text>
+<text x="431" y="154.5" font-size="11.5" class="t2">changed cells only; log:</text>
+<text x="431" y="169" font-size="11.5" class="t2">warnings and errors;</text>
+<text x="431" y="183.5" font-size="11.5" class="t2">bytes in: keys, frames</text>
+<rect x="644" y="102" width="212" height="96" rx="6" class="acc"/>
+<text x="655" y="122" font-size="12.5" class="b">Keys and host disk</text>
+<text x="655" y="140" font-size="11.5" class="t2">escape sequences turned</text>
+<text x="655" y="154.5" font-size="11.5" class="t2">into XT scancodes; frames</text>
+<text x="655" y="169" font-size="11.5" class="t2">ESC _ H D: one more</text>
+<text x="655" y="183.5" font-size="11.5" class="t2">INT 13h drive</text>
+<path d="M204,145 L226,145" class="ln"/>
+<path d="M226,145L218.0,141.4L218.0,148.6z" class="hd"/>
+<path d="M228,155 L206,155" class="ln"/>
+<path d="M206,155L214.0,158.6L214.0,151.4z" class="hd"/>
+<path d="M396,145 L418,145" class="ln"/>
+<path d="M418,145L410.0,141.4L410.0,148.6z" class="hd"/>
+<path d="M420,155 L398,155" class="ln"/>
+<path d="M398,155L406.0,158.6L406.0,151.4z" class="hd"/>
+<path d="M620,150 L642,150" class="ln"/>
+<path d="M642,150L634.0,146.4L634.0,153.6z" class="hd"/>
+<rect x="24" y="222" width="180" height="168" rx="6" class="box"/>
+<text x="35" y="242" font-size="12.5" class="b">USB devices</text>
+<text x="35" y="260" font-size="11.5" class="t2">keyboard, mouse, a hub</text>
+<text x="35" y="274.5" font-size="11.5" class="t2">with both, or a Logitech</text>
+<text x="35" y="289" font-size="11.5" class="t2">Unifying receiver;</text>
+<text x="35" y="303.5" font-size="11.5" class="t2">plugged in at any time,</text>
+<text x="35" y="318" font-size="11.5" class="t2">through a USB-C to</text>
+<text x="35" y="332.5" font-size="11.5" class="t2">USB-A OTG adapter</text>
+<rect x="228" y="222" width="168" height="168" rx="6" class="acc"/>
+<text x="239" y="242" font-size="12.5" class="b">Middle USB-C</text>
+<text x="239" y="260" font-size="11.5" class="t2">USB 2.0 high-speed</text>
+<text x="239" y="274.5" font-size="11.5" class="t2">OTG, run as host;</text>
+<text x="239" y="289" font-size="11.5" class="t2">5 V out to the</text>
+<text x="239" y="303.5" font-size="11.5" class="t2">devices</text>
+<rect x="420" y="222" width="200" height="168" rx="6" class="box"/>
+<text x="431" y="242" font-size="12.5" class="b">usb_lib, usb_evt</text>
+<text x="431" y="260" font-size="11.5" class="t2">ESP-IDF USB host and</text>
+<text x="431" y="274.5" font-size="11.5" class="t2">HID class driver, hubs;</text>
+<text x="431" y="289" font-size="11.5" class="t2">boot protocol on every</text>
+<text x="431" y="303.5" font-size="11.5" class="t2">keyboard and mouse;</text>
+<text x="431" y="318" font-size="11.5" class="t2">keyboard LEDs follow</text>
+<text x="431" y="332.5" font-size="11.5" class="t2">the BIOS lock state</text>
+<rect x="644" y="222" width="212" height="80" rx="6" class="acc"/>
+<text x="655" y="242" font-size="12.5" class="b">Keyboard</text>
+<text x="655" y="260" font-size="11.5" class="t2">report diffed into XT</text>
+<text x="655" y="274.5" font-size="11.5" class="t2">scancodes, repeat made</text>
+<text x="655" y="289" font-size="11.5" class="t2">here; port 60h, IRQ 1</text>
+<rect x="644" y="310" width="212" height="80" rx="6" class="acc"/>
+<text x="655" y="330" font-size="12.5" class="b">Mouse</text>
+<text x="655" y="348" font-size="11.5" class="t2">COM1 8250 at 3F8h, IRQ 4,</text>
+<text x="655" y="362.5" font-size="11.5" class="t2">Microsoft serial protocol;</text>
+<text x="655" y="377" font-size="11.5" class="t2">CTMOUSE gives INT 33h</text>
+<path d="M204,306 L226,306" class="ln"/>
+<path d="M226,306L218.0,302.4L218.0,309.6z" class="hd"/>
+<path d="M396,306 L418,306" class="ln"/>
+<path d="M418,306L410.0,302.4L410.0,309.6z" class="hd"/>
+<path d="M620,262 L642,262" class="ln"/>
+<path d="M642,262L634.0,258.4L634.0,265.6z" class="hd"/>
+<path d="M620,350 L642,350" class="ln"/>
+<path d="M642,350L634.0,346.4L634.0,353.6z" class="hd"/>
+<rect x="228" y="414" width="168" height="64" rx="6" class="box"/>
+<text x="239" y="434" font-size="12.5" class="b">Lower USB-C</text>
+<text x="239" y="452" font-size="11.5" class="t2">CH340 UART bridge</text>
+<text x="239" y="466.5" font-size="11.5" class="t2">on UART0: not used</text>
+<text x="420" y="438" font-size="11.5" class="t2">All three ports share the board's 5 V input.</text>
+<text x="420" y="454" font-size="11.5" class="t2">Ctrl+Alt+Up / Down set the volume from either</text>
+<text x="420" y="470" font-size="11.5" class="t2">keyboard; DOS never sees them.</text>
+<text x="24" y="504" font-size="11.5" class="tm">Opening the upper port can reset the board, and only one program can have it open: close the terminal before flashing or starting hostdisk.py.</text>
+</svg>

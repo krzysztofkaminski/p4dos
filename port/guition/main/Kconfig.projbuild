@@ -1,0 +1,130 @@
+menu "P4DOS"
+
+    config P4DOS_ROTATE_180
+        bool "Turn the picture upside down"
+        default n
+        help
+            The 800x1280 portrait glass is used as a 1280x800 landscape screen. By default
+            the picture is rotated the same way as the board's reference firmware. Enable
+            this to use the panel the other way up.
+
+    config P4DOS_LCD_NEW_PANEL
+        bool "Display: the \"new panel\" generation of the glass"
+        default n
+        help
+            Guition fits two generations of the 10.1" glass, each needing its own
+            initialisation sequence and timing. The first boards (chip revision v1.3) have
+            the old one; a board with a v3.2 chip had the new one, which with the old
+            settings shows only a light screen with horizontal lines.
+
+    choice P4DOS_CPU
+        prompt "Processor"
+        default P4DOS_CPU_386
+        help
+            The processor of the emulated PC. The 80386DX runs everything; the older ones
+            are there for the few programs that only work on them.
+
+        config P4DOS_CPU_386
+            bool "80386DX"
+        config P4DOS_CPU_186
+            bool "80186"
+        config P4DOS_CPU_8086
+            bool "8086"
+    endchoice
+
+    config P4DOS_FPU
+        bool "80387 numeric coprocessor"
+        depends on P4DOS_CPU_386
+        default y
+        help
+            Emulates the floating-point coprocessor next to the 80386. Programs that find
+            none fall back to their own (much slower) software arithmetic or refuse to
+            run; there is little reason to turn this off.
+
+    config P4DOS_RAM_MB
+        int "Memory of the 80386 machine (MB)"
+        depends on P4DOS_CPU_386
+        range 1 24
+        default 16
+        help
+            640 KB of this is conventional memory, what lies above the first megabyte is
+            extended memory (handed out by HIMEMX). It comes out of the board's 32 MB of
+            PSRAM, which the expanded memory below and the display also use.
+
+    config P4DOS_EMS_KB
+        int "Expanded memory (EMS 4.0) in KiB"
+        range 0 16384
+        default 4096 if P4DOS_CPU_386
+        default 8192
+        help
+            Expanded memory offered to DOS programs through EMM.SYS, taken from PSRAM.
+            0 disables EMS.
+
+    config P4DOS_XMS_KB
+        int "XMS memory of the 80186 or 8086 machine in KiB"
+        depends on !P4DOS_CPU_386
+        range 0 16384
+        default 4096
+        help
+            Extended memory blocks offered through XMS.SYS, taken from PSRAM. FreeCOM
+            swaps itself out to XMS while a program runs, which leaves about 570 KiB of
+            conventional memory free. 0 disables XMS.
+
+    config P4DOS_SOUND
+        bool "Sound through the ES8311 codec and speaker amplifier"
+        default y
+        help
+            Play the emulated Sound Blaster and PC speaker through the board's codec.
+
+    config P4DOS_VOLUME
+        int "Codec output level at full volume (0-100)"
+        depends on P4DOS_SOUND
+        range 0 100
+        default 85
+        help
+            How loud "100 %" is. The volume itself is set from the keyboard with
+            Ctrl+Alt+Up and Ctrl+Alt+Down (ten steps, remembered across power cycles)
+            and starts at 60 %.
+
+    config P4DOS_SERIAL_CONSOLE
+        bool "DOS console on the USB-Serial-JTAG port"
+        default y
+        help
+            Mirror the text screen to a terminal on the upper USB-C port and accept
+            keystrokes from it. Lets the machine be used without the panel or a USB
+            keyboard.
+
+    config P4DOS_STATS
+        bool "Report the emulation speed on the log (benchmarking)"
+        default n
+        help
+            Every two seconds, logs how many million instructions per second the guest
+            ran and how long the display refresh took. On the serial console, Ctrl-^
+            followed by two hex digits then sends that keyboard scancode as it is, so
+            that a key can be held down, and Ctrl-^ D stops and restarts the display
+            refresh.
+
+    config P4DOS_SD_CARD
+        bool "Use the TF card slot"
+        default y
+
+    choice P4DOS_SD_MODE
+        prompt "TF card contents"
+        depends on P4DOS_SD_CARD
+        default P4DOS_SD_RAW
+
+        config P4DOS_SD_RAW
+            bool "The card is drive D:"
+            help
+                DOS uses the card directly as its second hard disk: an ordinary FAT16 or
+                FAT32 card shows up as D:. Insert the card before power-on or before
+                rebooting DOS (Ctrl+Alt+Del).
+
+        config P4DOS_SD_IMAGES
+            bool "Disk image files"
+            help
+                The firmware mounts the card and attaches /P4DOS/A.IMG and /P4DOS/B.IMG as
+                floppy drives and /P4DOS/HD.IMG as a second hard disk, when present.
+    endchoice
+
+endmenu

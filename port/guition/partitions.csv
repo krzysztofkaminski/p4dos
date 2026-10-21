@@ -1,0 +1,7 @@
+# 16 MB flash. The "dosdisk" partition holds the hard disk image that DOS sees as C:
+# (build/p4dos-hd.img, 14 MB); it is read and written in place by the firmware.
+#
+# Name,    Type, SubType, Offset,   Size
+nvs,       data, nvs,     0x9000,   0x6000
+factory,   app,  factory, 0x10000,  0x1F0000
+dosdisk,   0x40, 0x00,    0x200000, 0xE00000

@@ -1,0 +1,105 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 716" width="880" height="716" role="img" aria-labelledby="t d">
+<title id="t">Cost of an x86 instruction in the interpreter</title>
+<desc id="d">RISC-V instructions executed per x86 instruction. Integer instructions take 14 to 83; an operand-size prefix went from 119 to 64; coprocessor instructions went from 84-592 down to 31-165.</desc>
+<style>.bg{fill:#fcfcfb;stroke:#e1e0d9}text{font-family:system-ui,-apple-system,"Segoe UI",Helvetica,Arial,sans-serif;fill:#0b0b0b}.t2{fill:#52514e}.tm{fill:#898781}.grid{stroke:#e1e0d9}.axis{stroke:#c3c2b7}.box{fill:#f3f2ee;stroke:#c3c2b7}.acc{fill:#e3eefc;stroke:#2a78d6}.band{fill:#f7f6f3;stroke:#e1e0d9}.s1{fill:#2a78d6}.s2{fill:#eb6834}.s3{fill:#1baf7a}.s4{fill:#eda100}.free{fill:#dddcd5}.prev{fill:#b9b8b0}.w1{fill:#dbe9fb}.w2{fill:#fbe3d8}.w3{fill:#d5f1e6}.w0{fill:#eeede8}.ln{stroke:#52514e;fill:none}.hd{fill:#52514e}.lead{stroke:#898781;fill:none}.gap{stroke:#fcfcfb}.mono{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace}.b{font-weight:600}.ln{stroke-width:1.4}.lead{stroke-width:1}.bg{stroke-width:1}.box,.acc,.band{stroke-width:1}.grid,.axis{stroke-width:1}@media (prefers-color-scheme:dark){.bg{fill:#1a1a19;stroke:#2c2c2a}text{font-family:system-ui,-apple-system,"Segoe UI",Helvetica,Arial,sans-serif;fill:#f0efec}.t2{fill:#c3c2b7}.tm{fill:#898781}.grid{stroke:#2c2c2a}.axis{stroke:#45453f}.box{fill:#252524;stroke:#4a4a45}.acc{fill:#14273f;stroke:#3987e5}.band{fill:#20201f;stroke:#2c2c2a}.s1{fill:#3987e5}.s2{fill:#d95926}.s3{fill:#199e70}.s4{fill:#c98500}.free{fill:#3a3a37}.prev{fill:#5d5c57}.w1{fill:#172c47}.w2{fill:#43241a}.w3{fill:#12362a}.w0{fill:#2a2a28}.ln{stroke:#c3c2b7;fill:none}.hd{fill:#c3c2b7}.lead{stroke:#898781;fill:none}.gap{stroke:#1a1a19}}</style>
+<rect x="0.5" y="0.5" width="879" height="715" rx="10" class="bg"/>
+<text x="24" y="32" font-size="16" class="b">Cost of an x86 instruction in the interpreter</text>
+<text x="24" y="52" font-size="12.5" class="t2">RISC-V instructions executed per x86 instruction: average over a loop of the instructions named, counted</text>
+<text x="24" y="68" font-size="12.5" class="t2">exactly with the instruction counter of qemu-system-riscv32. Lower is better.</text>
+<rect x="24" y="79" width="14" height="12" rx="2" class="s1"/>
+<text x="44" y="90" font-size="12" class="t2">current</text>
+<rect x="110.1" y="84" width="14" height="7" rx="2" class="prev"/>
+<text x="130.1" y="90" font-size="12" class="t2">before the fast paths (shown where it changed)</text>
+<line x1="270" y1="106" x2="270" y2="672" class="axis"/>
+<text x="270" y="688" font-size="11.5" class="tm" text-anchor="middle">0</text>
+<line x1="360" y1="106" x2="360" y2="672" class="grid"/>
+<text x="360" y="688" font-size="11.5" class="tm" text-anchor="middle">100</text>
+<line x1="450" y1="106" x2="450" y2="672" class="grid"/>
+<text x="450" y="688" font-size="11.5" class="tm" text-anchor="middle">200</text>
+<line x1="540" y1="106" x2="540" y2="672" class="grid"/>
+<text x="540" y="688" font-size="11.5" class="tm" text-anchor="middle">300</text>
+<line x1="630" y1="106" x2="630" y2="672" class="grid"/>
+<text x="630" y="688" font-size="11.5" class="tm" text-anchor="middle">400</text>
+<line x1="720" y1="106" x2="720" y2="672" class="grid"/>
+<text x="720" y="688" font-size="11.5" class="tm" text-anchor="middle">500</text>
+<line x1="810" y1="106" x2="810" y2="672" class="grid"/>
+<text x="810" y="688" font-size="11.5" class="tm" text-anchor="middle">600</text>
+<text x="24" y="128" font-size="12.5" class="b">Integer instructions, 32-bit flat code</text>
+<text x="258" y="152" font-size="12" class="mono" text-anchor="end">nop</text>
+<path d="M270,140h8.42a4,4 0 0 1 4,4v4a4,4 0 0 1 -4,4h-8.42z" class="s1"/>
+<text x="289.42" y="151" font-size="11.5" class="b">13.8</text>
+<text x="258" y="180" font-size="12" class="mono" text-anchor="end">mov eax, edx</text>
+<path d="M270,168h18.5a4,4 0 0 1 4,4v4a4,4 0 0 1 -4,4h-18.5z" class="s1"/>
+<text x="299.5" y="179" font-size="11.5" class="b">25.0</text>
+<text x="258" y="208" font-size="12" class="mono" text-anchor="end">push eax / pop eax</text>
+<path d="M270,196h16.7a4,4 0 0 1 4,4v4a4,4 0 0 1 -4,4h-16.7z" class="s1"/>
+<text x="297.7" y="207" font-size="11.5" class="b">23.0</text>
+<text x="258" y="236" font-size="12" class="mono" text-anchor="end">cmp eax, ebx / jcc</text>
+<path d="M270,224h21.38a4,4 0 0 1 4,4v4a4,4 0 0 1 -4,4h-21.38z" class="s1"/>
+<text x="302.38" y="235" font-size="11.5" class="b">28.2</text>
+<text x="258" y="264" font-size="12" class="mono" text-anchor="end">mov eax, [esi]</text>
+<path d="M270,252h35.06a4,4 0 0 1 4,4v4a4,4 0 0 1 -4,4h-35.06z" class="s1"/>
+<text x="316.06" y="263" font-size="11.5" class="b">43.4</text>
+<text x="258" y="292" font-size="12" class="mono" text-anchor="end">add eax, [esi+4]</text>
+<path d="M270,280h50.18a4,4 0 0 1 4,4v4a4,4 0 0 1 -4,4h-50.18z" class="s1"/>
+<text x="331.18" y="291" font-size="11.5" class="b">60.2</text>
+<text x="258" y="320" font-size="12" class="mono" text-anchor="end">mov eax, [esi+edx*4+8]</text>
+<path d="M270,308h71.06a4,4 0 0 1 4,4v4a4,4 0 0 1 -4,4h-71.06z" class="s1"/>
+<text x="352.06" y="319" font-size="11.5" class="b">83.4</text>
+<text x="258" y="348" font-size="12" class="mono" text-anchor="end">mov ax, [esi]   (66h prefix)</text>
+<path d="M270,336h53.78a4,4 0 0 1 4,4v4a4,4 0 0 1 -4,4h-53.78z" class="s1"/>
+<path d="M270,350h104.46a3,3 0 0 1 3,3v0a3,3 0 0 1 -3,3h-104.46z" class="prev"/>
+<text x="334.78" y="347" font-size="11.5" class="b">64.2</text>
+<text x="384.46" y="357" font-size="11.5" class="tm">119.4</text>
+<text x="24" y="386" font-size="12.5" class="b">80387 instructions</text>
+<text x="258" y="410" font-size="12" class="mono" text-anchor="end">fnstsw ax</text>
+<path d="M270,398h24.26a4,4 0 0 1 4,4v4a4,4 0 0 1 -4,4h-24.26z" class="s1"/>
+<path d="M270,412h72.78a3,3 0 0 1 3,3v0a3,3 0 0 1 -3,3h-72.78z" class="prev"/>
+<text x="305.26" y="409" font-size="11.5" class="b">31.4</text>
+<text x="352.78" y="419" font-size="11.5" class="tm">84.2</text>
+<text x="258" y="438" font-size="12" class="mono" text-anchor="end">fxch st1</text>
+<path d="M270,426h48.74a4,4 0 0 1 4,4v4a4,4 0 0 1 -4,4h-48.74z" class="s1"/>
+<path d="M270,440h126.06a3,3 0 0 1 3,3v0a3,3 0 0 1 -3,3h-126.06z" class="prev"/>
+<text x="329.74" y="437" font-size="11.5" class="b">58.6</text>
+<text x="406.06" y="447" font-size="11.5" class="tm">143.4</text>
+<text x="258" y="466" font-size="12" class="mono" text-anchor="end">fld m32 / fstp st0</text>
+<path d="M270,454h66.02a4,4 0 0 1 4,4v4a4,4 0 0 1 -4,4h-66.02z" class="s1"/>
+<path d="M270,468h165.66a3,3 0 0 1 3,3v0a3,3 0 0 1 -3,3h-165.66z" class="prev"/>
+<text x="347.02" y="465" font-size="11.5" class="b">77.8</text>
+<text x="445.66" y="475" font-size="11.5" class="tm">187.4</text>
+<text x="258" y="494" font-size="12" class="mono" text-anchor="end">fild m32 / fstp m64</text>
+<path d="M270,482h70.97a4,4 0 0 1 4,4v4a4,4 0 0 1 -4,4h-70.97z" class="s1"/>
+<path d="M270,496h300.03a3,3 0 0 1 3,3v0a3,3 0 0 1 -3,3h-300.03z" class="prev"/>
+<text x="351.97" y="493" font-size="11.5" class="b">83.3</text>
+<text x="580.03" y="503" font-size="11.5" class="tm">336.7</text>
+<text x="258" y="522" font-size="12" class="mono" text-anchor="end">fld m32 / fistp m64</text>
+<path d="M270,510h71.87a4,4 0 0 1 4,4v4a4,4 0 0 1 -4,4h-71.87z" class="s1"/>
+<path d="M270,524h237.75a3,3 0 0 1 3,3v0a3,3 0 0 1 -3,3h-237.75z" class="prev"/>
+<text x="352.87" y="521" font-size="11.5" class="b">84.3</text>
+<text x="517.75" y="531" font-size="11.5" class="tm">267.5</text>
+<text x="258" y="550" font-size="12" class="mono" text-anchor="end">fst m32</text>
+<path d="M270,538h88.34a4,4 0 0 1 4,4v4a4,4 0 0 1 -4,4h-88.34z" class="s1"/>
+<path d="M270,552h391.02a3,3 0 0 1 3,3v0a3,3 0 0 1 -3,3h-391.02z" class="prev"/>
+<text x="369.34" y="549" font-size="11.5" class="b">102.6</text>
+<text x="671.02" y="559" font-size="11.5" class="tm">437.8</text>
+<text x="258" y="578" font-size="12" class="mono" text-anchor="end">fld m32 / fmul m32 / fstp st0</text>
+<path d="M270,566h100.76a4,4 0 0 1 4,4v4a4,4 0 0 1 -4,4h-100.76z" class="s1"/>
+<path d="M270,580h298.59a3,3 0 0 1 3,3v0a3,3 0 0 1 -3,3h-298.59z" class="prev"/>
+<text x="381.76" y="577" font-size="11.5" class="b">116.4</text>
+<text x="578.59" y="587" font-size="11.5" class="tm">335.1</text>
+<text x="258" y="606" font-size="12" class="mono" text-anchor="end">fld m32 / fadd m32 / fstp st0</text>
+<path d="M270,594h103.19a4,4 0 0 1 4,4v4a4,4 0 0 1 -4,4h-103.19z" class="s1"/>
+<path d="M270,608h288.51a3,3 0 0 1 3,3v0a3,3 0 0 1 -3,3h-288.51z" class="prev"/>
+<text x="384.19" y="605" font-size="11.5" class="b">119.1</text>
+<text x="568.51" y="615" font-size="11.5" class="tm">323.9</text>
+<text x="258" y="634" font-size="12" class="mono" text-anchor="end">fcom m32</text>
+<path d="M270,622h110.66a4,4 0 0 1 4,4v4a4,4 0 0 1 -4,4h-110.66z" class="s1"/>
+<path d="M270,636h272.22a3,3 0 0 1 3,3v0a3,3 0 0 1 -3,3h-272.22z" class="prev"/>
+<text x="391.66" y="633" font-size="11.5" class="b">127.4</text>
+<text x="552.22" y="643" font-size="11.5" class="tm">305.8</text>
+<text x="258" y="662" font-size="12" class="mono" text-anchor="end">fld m32 / fdiv m32 / fstp m32</text>
+<path d="M270,650h144.32a4,4 0 0 1 4,4v4a4,4 0 0 1 -4,4h-144.32z" class="s1"/>
+<path d="M270,664h529.8a3,3 0 0 1 3,3v0a3,3 0 0 1 -3,3h-529.8z" class="prev"/>
+<text x="425.32" y="661" font-size="11.5" class="b">164.8</text>
+<text x="809.8" y="671" font-size="11.5" class="tm">592.0</text>
+</svg>

@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 392" width="880" height="392" role="img" aria-labelledby="t d">
+<title id="t">Emulated speed on the board</title>
+<desc id="d">Million x86 instructions per second on the ESP32-P4: about 9 in a 16-bit register loop, about 7 in a 16-bit mix, and for the Carmageddon demo 5.7 while loading (5.6 before the fast paths), 4.4 in the menus (1.2 before) and 4.0 in the race (2.7 before).</desc>
+<style>.bg{fill:#fcfcfb;stroke:#e1e0d9}text{font-family:system-ui,-apple-system,"Segoe UI",Helvetica,Arial,sans-serif;fill:#0b0b0b}.t2{fill:#52514e}.tm{fill:#898781}.grid{stroke:#e1e0d9}.axis{stroke:#c3c2b7}.box{fill:#f3f2ee;stroke:#c3c2b7}.acc{fill:#e3eefc;stroke:#2a78d6}.band{fill:#f7f6f3;stroke:#e1e0d9}.s1{fill:#2a78d6}.s2{fill:#eb6834}.s3{fill:#1baf7a}.s4{fill:#eda100}.free{fill:#dddcd5}.prev{fill:#b9b8b0}.w1{fill:#dbe9fb}.w2{fill:#fbe3d8}.w3{fill:#d5f1e6}.w0{fill:#eeede8}.ln{stroke:#52514e;fill:none}.hd{fill:#52514e}.lead{stroke:#898781;fill:none}.gap{stroke:#fcfcfb}.mono{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace}.b{font-weight:600}.ln{stroke-width:1.4}.lead{stroke-width:1}.bg{stroke-width:1}.box,.acc,.band{stroke-width:1}.grid,.axis{stroke-width:1}@media (prefers-color-scheme:dark){.bg{fill:#1a1a19;stroke:#2c2c2a}text{font-family:system-ui,-apple-system,"Segoe UI",Helvetica,Arial,sans-serif;fill:#f0efec}.t2{fill:#c3c2b7}.tm{fill:#898781}.grid{stroke:#2c2c2a}.axis{stroke:#45453f}.box{fill:#252524;stroke:#4a4a45}.acc{fill:#14273f;stroke:#3987e5}.band{fill:#20201f;stroke:#2c2c2a}.s1{fill:#3987e5}.s2{fill:#d95926}.s3{fill:#199e70}.s4{fill:#c98500}.free{fill:#3a3a37}.prev{fill:#5d5c57}.w1{fill:#172c47}.w2{fill:#43241a}.w3{fill:#12362a}.w0{fill:#2a2a28}.ln{stroke:#c3c2b7;fill:none}.hd{fill:#c3c2b7}.lead{stroke:#898781;fill:none}.gap{stroke:#1a1a19}}</style>
+<rect x="0.5" y="0.5" width="879" height="391" rx="10" class="bg"/>
+<text x="24" y="32" font-size="16" class="b">Emulated speed on the board</text>
+<text x="24" y="52" font-size="12.5" class="t2">Million x86 instructions per second, measured on the ESP32-P4 rev v1.3 at 360 MHz on 2026-10-10. Higher is better.</text>
+<rect x="24" y="65" width="14" height="12" rx="2" class="s1"/>
+<text x="44" y="76" font-size="12" class="t2">with the fast paths</text>
+<rect x="185.7" y="70" width="14" height="7" rx="2" class="prev"/>
+<text x="205.7" y="76" font-size="12" class="t2">before the coprocessor fast path and direct 66h dispatch</text>
+<line x1="330" y1="90" x2="330" y2="338" class="axis"/>
+<text x="330" y="356" font-size="11.5" class="tm" text-anchor="middle">0</text>
+<line x1="424" y1="90" x2="424" y2="338" class="grid"/>
+<text x="424" y="356" font-size="11.5" class="tm" text-anchor="middle">2</text>
+<line x1="518" y1="90" x2="518" y2="338" class="grid"/>
+<text x="518" y="356" font-size="11.5" class="tm" text-anchor="middle">4</text>
+<line x1="612" y1="90" x2="612" y2="338" class="grid"/>
+<text x="612" y="356" font-size="11.5" class="tm" text-anchor="middle">6</text>
+<line x1="706" y1="90" x2="706" y2="338" class="grid"/>
+<text x="706" y="356" font-size="11.5" class="tm" text-anchor="middle">8</text>
+<line x1="800" y1="90" x2="800" y2="338" class="grid"/>
+<text x="800" y="356" font-size="11.5" class="tm" text-anchor="middle">10</text>
+<text x="812" y="356" font-size="11.5" class="tm">MIPS</text>
+<text x="316" y="109" font-size="13" text-anchor="end">16-bit loop, registers only</text>
+<text x="316" y="125" font-size="11.5" class="tm" text-anchor="end">dec / inc / loop, typed into DEBUG</text>
+<path d="M330,96h419a4,4 0 0 1 4,4v10a4,4 0 0 1 -4,4h-419z" class="s1"/>
+<text x="761" y="109.5" font-size="12.5" class="b">≈ 9</text>
+<text x="316" y="159" font-size="13" text-anchor="end">16-bit mix</text>
+<text x="316" y="175" font-size="11.5" class="tm" text-anchor="end">memory operands, stack, calls</text>
+<path d="M330,146h325a4,4 0 0 1 4,4v10a4,4 0 0 1 -4,4h-325z" class="s1"/>
+<text x="667" y="159.5" font-size="12.5" class="b">≈ 7</text>
+<text x="316" y="209" font-size="13" text-anchor="end">Carmageddon demo: loading a race</text>
+<text x="316" y="225" font-size="11.5" class="tm" text-anchor="end">32-bit code, disk and unpacking</text>
+<path d="M330,196h263.9a4,4 0 0 1 4,4v10a4,4 0 0 1 -4,4h-263.9z" class="s1"/>
+<text x="605.9" y="209.5" font-size="12.5" class="b">5.7</text>
+<path d="M330,217h260.2a3,3 0 0 1 3,3v1a3,3 0 0 1 -3,3h-260.2z" class="prev"/>
+<text x="601.2" y="225" font-size="11.5" class="tm">5.6</text>
+<text x="316" y="259" font-size="13" text-anchor="end">Carmageddon demo: menus</text>
+<text x="316" y="275" font-size="11.5" class="tm" text-anchor="end">Watcom memcpy through the 80387, to the screen</text>
+<path d="M330,246h202.8a4,4 0 0 1 4,4v10a4,4 0 0 1 -4,4h-202.8z" class="s1"/>
+<text x="544.8" y="259.5" font-size="12.5" class="b">4.4</text>
+<path d="M330,267h53.4a3,3 0 0 1 3,3v1a3,3 0 0 1 -3,3h-53.4z" class="prev"/>
+<text x="394.4" y="275" font-size="11.5" class="tm">1.2</text>
+<text x="316" y="309" font-size="13" text-anchor="end">Carmageddon demo: race</text>
+<text x="316" y="325" font-size="11.5" class="tm" text-anchor="end">32-bit code, 12 % coprocessor instructions</text>
+<path d="M330,296h184a4,4 0 0 1 4,4v10a4,4 0 0 1 -4,4h-184z" class="s1"/>
+<text x="526" y="309.5" font-size="12.5" class="b">4.0</text>
+<path d="M330,317h123.9a3,3 0 0 1 3,3v1a3,3 0 0 1 -3,3h-123.9z" class="prev"/>
+<text x="464.9" y="325" font-size="11.5" class="tm">2.7</text>
+</svg>

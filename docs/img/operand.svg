@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 432" width="880" height="432" role="img" aria-labelledby="t d">
+<title id="t">A memory operand</title>
+<desc id="d">mov ax, [bx+si+8] in real mode: the ModRM byte 40h selects an entry of the 16-bit addressing table, BX + SI + disp8 with segment DS; the offset is checked against the window of DS's descriptor cache with one unsigned compare, and the word is loaded from host memory directly. Outside the window, out-of-line code handles limit faults, ROM, VGA planes, the A20 wrap and paging. Example: with DS = 9800h and a planar video mode on, offsets 0000-7FFF are plain RAM, 8000-FFFF reach video memory. Instruction bytes come from a window on CS; flags are computed lazily.</desc>
+<style>.bg{fill:#fcfcfb;stroke:#e1e0d9}text{font-family:system-ui,-apple-system,"Segoe UI",Helvetica,Arial,sans-serif;fill:#0b0b0b}.t2{fill:#52514e}.tm{fill:#898781}.grid{stroke:#e1e0d9}.axis{stroke:#c3c2b7}.box{fill:#f3f2ee;stroke:#c3c2b7}.acc{fill:#e3eefc;stroke:#2a78d6}.band{fill:#f7f6f3;stroke:#e1e0d9}.s1{fill:#2a78d6}.s2{fill:#eb6834}.s3{fill:#1baf7a}.s4{fill:#eda100}.free{fill:#dddcd5}.prev{fill:#b9b8b0}.w1{fill:#dbe9fb}.w2{fill:#fbe3d8}.w3{fill:#d5f1e6}.w0{fill:#eeede8}.ln{stroke:#52514e;fill:none}.hd{fill:#52514e}.lead{stroke:#898781;fill:none}.gap{stroke:#fcfcfb}.mono{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace}.b{font-weight:600}.ln{stroke-width:1.4}.lead{stroke-width:1}.bg{stroke-width:1}.box,.acc,.band{stroke-width:1}.grid,.axis{stroke-width:1}@media (prefers-color-scheme:dark){.bg{fill:#1a1a19;stroke:#2c2c2a}text{font-family:system-ui,-apple-system,"Segoe UI",Helvetica,Arial,sans-serif;fill:#f0efec}.t2{fill:#c3c2b7}.tm{fill:#898781}.grid{stroke:#2c2c2a}.axis{stroke:#45453f}.box{fill:#252524;stroke:#4a4a45}.acc{fill:#14273f;stroke:#3987e5}.band{fill:#20201f;stroke:#2c2c2a}.s1{fill:#3987e5}.s2{fill:#d95926}.s3{fill:#199e70}.s4{fill:#c98500}.free{fill:#3a3a37}.prev{fill:#5d5c57}.w1{fill:#172c47}.w2{fill:#43241a}.w3{fill:#12362a}.w0{fill:#2a2a28}.ln{stroke:#c3c2b7;fill:none}.hd{fill:#c3c2b7}.lead{stroke:#898781;fill:none}.gap{stroke:#1a1a19}}</style>
+<rect x="0.5" y="0.5" width="879" height="431" rx="10" class="bg"/>
+<text x="24" y="32" font-size="16" class="b">A memory operand</text>
+<text x="24" y="52" font-size="12.5" class="t2">mov ax, [bx+si+8] as the interpreter does it: a table look-up, one compare, one load.</text>
+<rect x="24" y="80" width="190" height="80" rx="6" class="box"/>
+<text x="35" y="100" font-size="12.5" class="b">Instruction bytes</text>
+<text x="35" y="118" font-size="11.5" class="mono t2">8B 40 08</text>
+<text x="35" y="132.5" font-size="11.5" class="t2">opcode 8B, ModRM 40h,</text>
+<text x="35" y="147" font-size="11.5" class="t2">displacement 08</text>
+<rect x="238" y="80" width="190" height="80" rx="6" class="box"/>
+<text x="249" y="100" font-size="12.5" class="b">ModRM table</text>
+<text x="249" y="118" font-size="11.5" class="t2">one for 16-bit and one for</text>
+<text x="249" y="132.5" font-size="11.5" class="t2">32-bit addressing: BX+SI</text>
+<text x="249" y="147" font-size="11.5" class="t2">+disp8, segment DS</text>
+<rect x="452" y="80" width="190" height="80" rx="6" class="acc"/>
+<text x="463" y="100" font-size="12.5" class="b">DS: cpu_seg_t</text>
+<text x="463" y="118" font-size="11.5" class="mono t2">mem, lo, rd[], wr[]</text>
+<text x="463" y="132.5" font-size="11.5" class="t2">the window: plain RAM at</text>
+<text x="463" y="147" font-size="11.5" class="t2">a host address</text>
+<rect x="666" y="80" width="190" height="80" rx="6" class="acc"/>
+<text x="677" y="100" font-size="12.5" class="b">One compare</text>
+<text x="677" y="118" font-size="11.5" class="mono t2">off - lo &lt; rd[1]</text>
+<text x="677" y="132.5" font-size="11.5" class="t2">unsigned; rd[1] is for</text>
+<text x="677" y="147" font-size="11.5" class="t2">2-byte accesses</text>
+<path d="M214,120 L236,120" class="ln"/>
+<path d="M236,120L228.0,116.4L228.0,123.6z" class="hd"/>
+<path d="M428,120 L450,120" class="ln"/>
+<path d="M450,120L442.0,116.4L442.0,123.6z" class="hd"/>
+<path d="M642,120 L664,120" class="ln"/>
+<path d="M664,120L656.0,116.4L656.0,123.6z" class="hd"/>
+<rect x="452" y="204" width="190" height="80" rx="6" class="acc"/>
+<text x="463" y="224" font-size="12.5" class="b">Inside: host load</text>
+<text x="463" y="242" font-size="11.5" class="t2">one unaligned 16-bit load</text>
+<text x="463" y="256.5" font-size="11.5" class="t2">from mem + off</text>
+<rect x="666" y="204" width="190" height="80" rx="6" class="box"/>
+<text x="677" y="224" font-size="12.5" class="b">Outside: out of line</text>
+<text x="677" y="242" font-size="11.5" class="t2">limit faults, ROM, VGA</text>
+<text x="677" y="256.5" font-size="11.5" class="t2">planes, the A20 wrap,</text>
+<text x="677" y="271" font-size="11.5" class="t2">paging: TLB, page walk</text>
+<path d="M761,160 L761,202" class="ln"/>
+<path d="M761,202L764.6,194.0L757.4,194.0z" class="hd"/>
+<text x="769" y="190" font-size="11.5" class="tm">no</text>
+<path d="M706,160 L706,182 L547,182 L547,202" class="ln"/>
+<path d="M547,202L550.6,194.0L543.4,194.0z" class="hd"/>
+<text x="555" y="198" font-size="11.5" class="tm">yes</text>
+<text x="24" y="214" font-size="12" class="b">Example: DS = 9800h, a planar video mode on</text>
+<rect x="24" y="236" width="201" height="26" rx="3" class="w1"/>
+<rect x="24" y="236" width="5" height="26" class="s1"/>
+<rect x="227" y="236" width="201" height="26" rx="3" class="w2"/>
+<rect x="227" y="236" width="5" height="26" class="s2"/>
+<text x="125" y="253" font-size="11.5" text-anchor="middle">window: RAM 98000-9FFFF</text>
+<text x="327" y="253" font-size="11.5" text-anchor="middle">video memory from A0000</text>
+<text x="24" y="278" font-size="11.5" class="mono tm">0000</text>
+<text x="226" y="278" font-size="11.5" class="mono tm" text-anchor="middle">8000</text>
+<text x="428" y="278" font-size="11.5" class="mono tm" text-anchor="end">FFFF</text>
+<text x="24" y="296" font-size="11.5" class="t2">Offsets 8000 and up fall outside the window and go through</text>
+<text x="24" y="311" font-size="11.5" class="t2">the VGA's planes; in text mode the window covers all of it.</text>
+<rect x="24" y="336" width="404" height="72" rx="6" class="box"/>
+<text x="35" y="356" font-size="12.5" class="b">Instruction fetch</text>
+<text x="35" y="374" font-size="11.5" class="t2">bytes come from a window on CS in the same way; after</text>
+<text x="35" y="388.5" font-size="11.5" class="t2">each instruction one compare checks IP against its end</text>
+<rect x="452" y="336" width="404" height="72" rx="6" class="box"/>
+<text x="463" y="356" font-size="12.5" class="b">Flags, lazily</text>
+<text x="463" y="374" font-size="11.5" class="t2">arithmetic stores its result and the carry vector; ZF,</text>
+<text x="463" y="388.5" font-size="11.5" class="t2">SF, CF, OF are worked out only when something reads them</text>
+</svg>

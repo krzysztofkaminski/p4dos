@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 354" width="880" height="354" role="img" aria-labelledby="t d">
+<title id="t">From power-on to the DOS prompt</title>
+<desc id="d">The ESP-IDF bootloader starts the firmware, which allocates 16 MB of guest RAM, the VGA planes and the EMS pool in PSRAM, sets up the clock, the machine and the disks, starts the display, USB host, sound and console tasks on core 0 and the emulator on core 1. The emulated PC starts at F000:FFF0, runs POST in C, boots the first bootable disk through INT 19h, and FreeDOS loads HIMEMX, XMS.SYS and EMM.SYS from FDCONFIG.SYS and runs AUTOEXEC.BAT, about 4 s after power-on.</desc>
+<style>.bg{fill:#fcfcfb;stroke:#e1e0d9}text{font-family:system-ui,-apple-system,"Segoe UI",Helvetica,Arial,sans-serif;fill:#0b0b0b}.t2{fill:#52514e}.tm{fill:#898781}.grid{stroke:#e1e0d9}.axis{stroke:#c3c2b7}.box{fill:#f3f2ee;stroke:#c3c2b7}.acc{fill:#e3eefc;stroke:#2a78d6}.band{fill:#f7f6f3;stroke:#e1e0d9}.s1{fill:#2a78d6}.s2{fill:#eb6834}.s3{fill:#1baf7a}.s4{fill:#eda100}.free{fill:#dddcd5}.prev{fill:#b9b8b0}.w1{fill:#dbe9fb}.w2{fill:#fbe3d8}.w3{fill:#d5f1e6}.w0{fill:#eeede8}.ln{stroke:#52514e;fill:none}.hd{fill:#52514e}.lead{stroke:#898781;fill:none}.gap{stroke:#fcfcfb}.mono{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace}.b{font-weight:600}.ln{stroke-width:1.4}.lead{stroke-width:1}.bg{stroke-width:1}.box,.acc,.band{stroke-width:1}.grid,.axis{stroke-width:1}@media (prefers-color-scheme:dark){.bg{fill:#1a1a19;stroke:#2c2c2a}text{font-family:system-ui,-apple-system,"Segoe UI",Helvetica,Arial,sans-serif;fill:#f0efec}.t2{fill:#c3c2b7}.tm{fill:#898781}.grid{stroke:#2c2c2a}.axis{stroke:#45453f}.box{fill:#252524;stroke:#4a4a45}.acc{fill:#14273f;stroke:#3987e5}.band{fill:#20201f;stroke:#2c2c2a}.s1{fill:#3987e5}.s2{fill:#d95926}.s3{fill:#199e70}.s4{fill:#c98500}.free{fill:#3a3a37}.prev{fill:#5d5c57}.w1{fill:#172c47}.w2{fill:#43241a}.w3{fill:#12362a}.w0{fill:#2a2a28}.ln{stroke:#c3c2b7;fill:none}.hd{fill:#c3c2b7}.lead{stroke:#898781;fill:none}.gap{stroke:#1a1a19}}</style>
+<rect x="0.5" y="0.5" width="879" height="353" rx="10" class="bg"/>
+<text x="24" y="32" font-size="16" class="b">From power-on to C:\&gt;</text>
+<text x="24" y="52" font-size="12.5" class="t2">About 4 s on the board: the firmware sets up the machine, then the emulated PC starts at its reset vector.</text>
+<text x="24" y="92" font-size="12.5" class="b">Firmware (ESP-IDF)</text>
+<rect x="24" y="104" width="156" height="80" rx="6" class="box"/>
+<text x="35" y="124" font-size="12.5" class="b">Bootloader</text>
+<text x="35" y="142" font-size="11.5" class="t2">at flash 0x2000;</text>
+<text x="35" y="156.5" font-size="11.5" class="t2">loads the app from</text>
+<text x="35" y="171" font-size="11.5" class="t2">0x10000</text>
+<rect x="193" y="104" width="156" height="80" rx="6" class="box"/>
+<text x="204" y="124" font-size="12.5" class="b">PSRAM</text>
+<text x="204" y="142" font-size="11.5" class="t2">16 MB guest RAM,</text>
+<text x="204" y="156.5" font-size="11.5" class="t2">256 KB VGA planes,</text>
+<text x="204" y="171" font-size="11.5" class="t2">4 MB EMS pool</text>
+<rect x="362" y="104" width="156" height="80" rx="6" class="box"/>
+<text x="373" y="124" font-size="12.5" class="b">Machine</text>
+<text x="373" y="142" font-size="11.5" class="t2">clock, pc_init(), C:</text>
+<text x="373" y="156.5" font-size="11.5" class="t2">in flash, TF card</text>
+<text x="373" y="171" font-size="11.5" class="t2">probed, pc_reset()</text>
+<rect x="531" y="104" width="156" height="80" rx="6" class="box"/>
+<text x="542" y="124" font-size="12.5" class="b">Core 0 tasks</text>
+<text x="542" y="142" font-size="11.5" class="t2">display, USB host,</text>
+<text x="542" y="156.5" font-size="11.5" class="t2">sound, console</text>
+<rect x="700" y="104" width="156" height="80" rx="6" class="acc"/>
+<text x="711" y="124" font-size="12.5" class="b">Core 1</text>
+<text x="711" y="142" font-size="11.5" class="t2">task emu runs the</text>
+<text x="711" y="156.5" font-size="11.5" class="t2">emulated PC</text>
+<path d="M180,144 L191,144" class="ln"/>
+<path d="M191,144L183.0,140.4L183.0,147.6z" class="hd"/>
+<path d="M349,144 L360,144" class="ln"/>
+<path d="M360,144L352.0,140.4L352.0,147.6z" class="hd"/>
+<path d="M518,144 L529,144" class="ln"/>
+<path d="M529,144L521.0,140.4L521.0,147.6z" class="hd"/>
+<path d="M687,144 L698,144" class="ln"/>
+<path d="M698,144L690.0,140.4L690.0,147.6z" class="hd"/>
+<path d="M778,184 L778,204 L102,204 L102,238" class="ln"/>
+<path d="M102,238L105.6,230.0L98.4,230.0z" class="hd"/>
+<text x="112" y="226" font-size="12.5" class="b">Emulated PC (x86)</text>
+<rect x="24" y="240" width="156" height="80" rx="6" class="acc"/>
+<text x="35" y="260" font-size="12.5" class="b">F000:FFF0</text>
+<text x="35" y="278" font-size="11.5" class="t2">reset vector: a far</text>
+<text x="35" y="292.5" font-size="11.5" class="t2">jump to POST</text>
+<rect x="193" y="240" width="156" height="80" rx="6" class="acc"/>
+<text x="204" y="260" font-size="12.5" class="b">POST, F1 E0</text>
+<text x="204" y="278" font-size="11.5" class="t2">vectors, BIOS data,</text>
+<text x="204" y="292.5" font-size="11.5" class="t2">TF card probed again,</text>
+<text x="204" y="307" font-size="11.5" class="t2">banner and drives</text>
+<rect x="362" y="240" width="156" height="80" rx="6" class="acc"/>
+<text x="373" y="260" font-size="12.5" class="b">INT 19h, F1 E1</text>
+<text x="373" y="278" font-size="11.5" class="t2">boot sector of the</text>
+<text x="373" y="292.5" font-size="11.5" class="t2">first bootable disk</text>
+<text x="373" y="307" font-size="11.5" class="t2">to 0000:7C00</text>
+<rect x="531" y="240" width="156" height="80" rx="6" class="box"/>
+<text x="542" y="260" font-size="12.5" class="b">FreeDOS kernel</text>
+<text x="542" y="278" font-size="11.5" class="t2">FDCONFIG.SYS loads</text>
+<text x="542" y="292.5" font-size="11.5" class="t2">HIMEMX, XMS.SYS and</text>
+<text x="542" y="307" font-size="11.5" class="t2">EMM.SYS; DOS=HIGH</text>
+<rect x="700" y="240" width="156" height="80" rx="6" class="box"/>
+<text x="711" y="260" font-size="12.5" class="b">COMMAND.COM</text>
+<text x="711" y="278" font-size="11.5" class="t2">AUTOEXEC.BAT sets</text>
+<text x="711" y="292.5" font-size="11.5" class="t2">BLASTER, loads</text>
+<text x="711" y="307" font-size="11.5" class="t2">CTMOUSE; then C:\&gt;</text>
+<path d="M180,280 L191,280" class="ln"/>
+<path d="M191,280L183.0,276.4L183.0,283.6z" class="hd"/>
+<path d="M349,280 L360,280" class="ln"/>
+<path d="M360,280L352.0,276.4L352.0,283.6z" class="hd"/>
+<path d="M518,280 L529,280" class="ln"/>
+<path d="M529,280L521.0,276.4L521.0,283.6z" class="hd"/>
+<path d="M687,280 L698,280" class="ln"/>
+<path d="M698,280L690.0,276.4L690.0,283.6z" class="hd"/>
+<text x="24" y="342" font-size="11.5" class="tm">Ctrl+Alt+Del runs POST again while the firmware keeps running, so a TF card inserted in the meantime is found.</text>
+</svg>

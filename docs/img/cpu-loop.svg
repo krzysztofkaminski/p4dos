@@ -1,0 +1,99 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 500" width="880" height="500" role="img" aria-labelledby="t d">
+<title id="t">The CPU interpreter</title>
+<desc id="d">pc_step runs slices of up to 4096 instructions. Inside a slice the interpreter loops: fetch an opcode byte from the code window, jump through one of four 256-entry handler tables, run the handler, and continue with one compare. Handlers use a fast path for memory operands, an inline fast path for the coprocessor and direct dispatch for a lone operand-size prefix; everything unusual is out of line: segment limits, ROM, VGA planes, paging, the general coprocessor code, and faults delivered by longjmp.</desc>
+<style>.bg{fill:#fcfcfb;stroke:#e1e0d9}text{font-family:system-ui,-apple-system,"Segoe UI",Helvetica,Arial,sans-serif;fill:#0b0b0b}.t2{fill:#52514e}.tm{fill:#898781}.grid{stroke:#e1e0d9}.axis{stroke:#c3c2b7}.box{fill:#f3f2ee;stroke:#c3c2b7}.acc{fill:#e3eefc;stroke:#2a78d6}.band{fill:#f7f6f3;stroke:#e1e0d9}.s1{fill:#2a78d6}.s2{fill:#eb6834}.s3{fill:#1baf7a}.s4{fill:#eda100}.free{fill:#dddcd5}.prev{fill:#b9b8b0}.w1{fill:#dbe9fb}.w2{fill:#fbe3d8}.w3{fill:#d5f1e6}.w0{fill:#eeede8}.ln{stroke:#52514e;fill:none}.hd{fill:#52514e}.lead{stroke:#898781;fill:none}.gap{stroke:#fcfcfb}.mono{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace}.b{font-weight:600}.ln{stroke-width:1.4}.lead{stroke-width:1}.bg{stroke-width:1}.box,.acc,.band{stroke-width:1}.grid,.axis{stroke-width:1}@media (prefers-color-scheme:dark){.bg{fill:#1a1a19;stroke:#2c2c2a}text{font-family:system-ui,-apple-system,"Segoe UI",Helvetica,Arial,sans-serif;fill:#f0efec}.t2{fill:#c3c2b7}.tm{fill:#898781}.grid{stroke:#2c2c2a}.axis{stroke:#45453f}.box{fill:#252524;stroke:#4a4a45}.acc{fill:#14273f;stroke:#3987e5}.band{fill:#20201f;stroke:#2c2c2a}.s1{fill:#3987e5}.s2{fill:#d95926}.s3{fill:#199e70}.s4{fill:#c98500}.free{fill:#3a3a37}.prev{fill:#5d5c57}.w1{fill:#172c47}.w2{fill:#43241a}.w3{fill:#12362a}.w0{fill:#2a2a28}.ln{stroke:#c3c2b7;fill:none}.hd{fill:#c3c2b7}.lead{stroke:#898781;fill:none}.gap{stroke:#1a1a19}}</style>
+<rect x="0.5" y="0.5" width="879" height="499" rx="10" class="bg"/>
+<text x="24" y="32" font-size="16" class="b">The CPU interpreter</text>
+<text x="24" y="52" font-size="12.5" class="t2">One function of labelled handlers (run_loop in core/cpu.c), threaded with computed goto.</text>
+<rect x="24" y="112" width="152" height="76" rx="6" class="box"/>
+<text x="35" y="132" font-size="12.5" class="b">pc_step(), cpu_run(n)</text>
+<text x="35" y="150" font-size="11.5" class="t2">a slice: up to 4096</text>
+<text x="35" y="164.5" font-size="11.5" class="t2">instructions, cut short</text>
+<text x="35" y="179" font-size="11.5" class="t2">at a timer deadline</text>
+<rect x="214" y="112" width="196" height="76" rx="6" class="acc"/>
+<text x="225" y="132" font-size="12.5" class="b">Fetch</text>
+<text x="225" y="150" font-size="11.5" class="t2">opcode byte from the code</text>
+<text x="225" y="164.5" font-size="11.5" class="t2">window: a host pointer valid</text>
+<text x="225" y="179" font-size="11.5" class="t2">from CS:IP up to a limit</text>
+<rect x="440" y="112" width="196" height="76" rx="6" class="acc"/>
+<text x="451" y="132" font-size="12.5" class="b">Dispatch</text>
+<text x="451" y="150" font-size="11.5" class="t2">goto *table[opcode]</text>
+<text x="451" y="164.5" font-size="11.5" class="t2">4 tables of 256 handlers:</text>
+<text x="451" y="179" font-size="11.5" class="t2">operand size × stack size</text>
+<rect x="666" y="112" width="190" height="76" rx="6" class="acc"/>
+<text x="677" y="132" font-size="12.5" class="b">Handler</text>
+<text x="677" y="150" font-size="11.5" class="t2">one labelled block per</text>
+<text x="677" y="164.5" font-size="11.5" class="t2">opcode; lazy flags (last</text>
+<text x="677" y="179" font-size="11.5" class="t2">result and carry vector)</text>
+<path d="M176,150 L212,150" class="ln"/>
+<path d="M212,150L204.0,146.4L204.0,153.6z" class="hd"/>
+<path d="M410,150 L438,150" class="ln"/>
+<path d="M438,150L430.0,146.4L430.0,153.6z" class="hd"/>
+<path d="M636,150 L664,150" class="ln"/>
+<path d="M664,150L656.0,146.4L656.0,153.6z" class="hd"/>
+<path d="M761,112 L761,92 L312,92 L312,110" class="ln"/>
+<path d="M312,110L315.6,102.0L308.4,102.0z" class="hd"/>
+<text x="536" y="86" font-size="11.5" class="tm" text-anchor="middle">NEXT(): slice left and IP inside the code window? One compare, then fetch and jump.</text>
+<path d="M761,188 V214 M315,214 H755" class="ln"/>
+<path d="M315,214 L315,238" class="ln"/>
+<path d="M315,238L318.6,230.0L311.4,230.0z" class="hd"/>
+<path d="M535,214 L535,238" class="ln"/>
+<path d="M535,238L538.6,230.0L531.4,230.0z" class="hd"/>
+<path d="M755,214 L755,238" class="ln"/>
+<path d="M755,238L758.6,230.0L751.4,230.0z" class="hd"/>
+<rect x="214" y="240" width="202" height="90" rx="6" class="box"/>
+<text x="225" y="260" font-size="12.5" class="b">Memory operand</text>
+<text x="225" y="278" font-size="11.5" class="t2">address from a table indexed</text>
+<text x="225" y="292.5" font-size="11.5" class="t2">by ModRM (16- or 32-bit);</text>
+<text x="225" y="307" font-size="11.5" class="t2">offset inside the segment's</text>
+<text x="225" y="321.5" font-size="11.5" class="t2">window: direct host access</text>
+<rect x="434" y="240" width="202" height="90" rx="6" class="box"/>
+<text x="445" y="260" font-size="12.5" class="b">80387 escape (D8 to DF)</text>
+<text x="445" y="278" font-size="11.5" class="t2">usual instructions inline:</text>
+<text x="445" y="292.5" font-size="11.5" class="t2">normal numbers and zeros,</text>
+<text x="445" y="307" font-size="11.5" class="t2">exceptions masked, every</text>
+<text x="445" y="321.5" font-size="11.5" class="t2">rounding mode</text>
+<rect x="654" y="240" width="202" height="90" rx="6" class="box"/>
+<text x="665" y="260" font-size="12.5" class="b">Prefixes</text>
+<text x="665" y="278" font-size="11.5" class="t2">66h alone: dispatch from the</text>
+<text x="665" y="292.5" font-size="11.5" class="t2">other operand-size table;</text>
+<text x="665" y="307" font-size="11.5" class="t2">others: flag set, slow path</text>
+<text x="665" y="321.5" font-size="11.5" class="t2">for that one instruction</text>
+<rect x="24" y="384" width="152" height="90" rx="6" class="box"/>
+<text x="35" y="404" font-size="12.5" class="b">Faults</text>
+<text x="35" y="422" font-size="11.5" class="t2">longjmp to cpu_run();</text>
+<text x="35" y="436.5" font-size="11.5" class="t2">gates, privilege and</text>
+<text x="35" y="451" font-size="11.5" class="t2">stack switch, task</text>
+<text x="35" y="465.5" font-size="11.5" class="t2">switch (cpu_sys.h)</text>
+<rect x="214" y="384" width="202" height="90" rx="6" class="box"/>
+<text x="225" y="404" font-size="12.5" class="b">Out of line</text>
+<text x="225" y="422" font-size="11.5" class="t2">segment limits, ROM, VGA</text>
+<text x="225" y="436.5" font-size="11.5" class="t2">planes, A20 wrap; paging:</text>
+<text x="225" y="451" font-size="11.5" class="t2">256-entry TLB in front of</text>
+<text x="225" y="465.5" font-size="11.5" class="t2">a page walk</text>
+<rect x="434" y="384" width="202" height="90" rx="6" class="box"/>
+<text x="445" y="404" font-size="12.5" class="b">fpu_exec(), general</text>
+<text x="445" y="422" font-size="11.5" class="t2">80-bit arithmetic on 64-bit</text>
+<text x="445" y="436.5" font-size="11.5" class="t2">integers (fx80.h), about</text>
+<text x="445" y="451" font-size="11.5" class="t2">400 RISC-V instructions</text>
+<text x="445" y="465.5" font-size="11.5" class="t2">per instruction</text>
+<rect x="654" y="384" width="202" height="90" rx="6" class="box"/>
+<text x="665" y="404" font-size="12.5" class="b">Interrupts</text>
+<text x="665" y="422" font-size="11.5" class="t2">sampled only where they</text>
+<text x="665" y="436.5" font-size="11.5" class="t2">can become deliverable:</text>
+<text x="665" y="451" font-size="11.5" class="t2">slice end, port output,</text>
+<text x="665" y="465.5" font-size="11.5" class="t2">STI, POPF, IRET, HLT</text>
+<path d="M315,330 L315,382" class="ln"/>
+<path d="M315,382L318.6,374.0L311.4,374.0z" class="hd"/>
+<text x="323" y="360" font-size="11.5" class="tm">otherwise</text>
+<path d="M535,330 L535,382" class="ln"/>
+<path d="M535,382L538.6,374.0L531.4,374.0z" class="hd"/>
+<text x="543" y="360" font-size="11.5" class="tm">declines, nothing changed</text>
+<path d="M214,429 L178,429" class="ln"/>
+<path d="M178,429L186.0,432.6L186.0,425.4z" class="hd"/>
+<text x="196" y="421" font-size="11.5" class="tm" text-anchor="middle">fault</text>
+<path d="M100,384 L100,190" class="ln"/>
+<path d="M100,190L96.4,198.0L103.6,198.0z" class="hd"/>
+<text x="108" y="296" font-size="11.5" class="tm">restart, or</text>
+<text x="108" y="311" font-size="11.5" class="tm">the handler</text>
+</svg>

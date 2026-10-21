@@ -1,0 +1,126 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 576" width="880" height="576" role="img" aria-labelledby="t d">
+<title id="t">BIOS services in C</title>
+<desc id="d">A BIOS call: the program's INT 13h goes through vector 13h to the ROM stub at F000:EC59, which is the two-byte opcode F1 13 and an IRET. The CPU core sees F1 with CS = F000h in real or virtual-8086 mode and calls disk_int13() in C, which does the work and sets AH and the carry flag; the IRET returns to the caller. A grid lists the ROM entry points and the hypercall each one makes. A key press still runs x86 code: the scancode is at port 60h, IRQ 1 goes through the PIC to the INT 9 stub, which reads the port, offers the key to INT 15h AH=4Fh and then calls key_process() in C with F1 E2; INT 16h reads the BIOS keyboard buffer.</desc>
+<style>.bg{fill:#fcfcfb;stroke:#e1e0d9}text{font-family:system-ui,-apple-system,"Segoe UI",Helvetica,Arial,sans-serif;fill:#0b0b0b}.t2{fill:#52514e}.tm{fill:#898781}.grid{stroke:#e1e0d9}.axis{stroke:#c3c2b7}.box{fill:#f3f2ee;stroke:#c3c2b7}.acc{fill:#e3eefc;stroke:#2a78d6}.band{fill:#f7f6f3;stroke:#e1e0d9}.s1{fill:#2a78d6}.s2{fill:#eb6834}.s3{fill:#1baf7a}.s4{fill:#eda100}.free{fill:#dddcd5}.prev{fill:#b9b8b0}.w1{fill:#dbe9fb}.w2{fill:#fbe3d8}.w3{fill:#d5f1e6}.w0{fill:#eeede8}.ln{stroke:#52514e;fill:none}.hd{fill:#52514e}.lead{stroke:#898781;fill:none}.gap{stroke:#fcfcfb}.mono{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace}.b{font-weight:600}.ln{stroke-width:1.4}.lead{stroke-width:1}.bg{stroke-width:1}.box,.acc,.band{stroke-width:1}.grid,.axis{stroke-width:1}@media (prefers-color-scheme:dark){.bg{fill:#1a1a19;stroke:#2c2c2a}text{font-family:system-ui,-apple-system,"Segoe UI",Helvetica,Arial,sans-serif;fill:#f0efec}.t2{fill:#c3c2b7}.tm{fill:#898781}.grid{stroke:#2c2c2a}.axis{stroke:#45453f}.box{fill:#252524;stroke:#4a4a45}.acc{fill:#14273f;stroke:#3987e5}.band{fill:#20201f;stroke:#2c2c2a}.s1{fill:#3987e5}.s2{fill:#d95926}.s3{fill:#199e70}.s4{fill:#c98500}.free{fill:#3a3a37}.prev{fill:#5d5c57}.w1{fill:#172c47}.w2{fill:#43241a}.w3{fill:#12362a}.w0{fill:#2a2a28}.ln{stroke:#c3c2b7;fill:none}.hd{fill:#c3c2b7}.lead{stroke:#898781;fill:none}.gap{stroke:#1a1a19}}</style>
+<rect x="0.5" y="0.5" width="879" height="575" rx="10" class="bg"/>
+<text x="24" y="32" font-size="16" class="b">BIOS services in C</text>
+<text x="24" y="52" font-size="12.5" class="t2">The ROM holds x86 stubs at the IBM addresses; each one traps into C with the two-byte opcode F1 nn.</text>
+<text x="24" y="92" font-size="12.5" class="b">A BIOS call: INT 13h, read sectors</text>
+<rect x="24" y="104" width="156" height="80" rx="6" class="box"/>
+<text x="35" y="124" font-size="12.5" class="b">INT 13h</text>
+<text x="35" y="142" font-size="11.5" class="t2">AH = 42h: read</text>
+<text x="35" y="156.5" font-size="11.5" class="t2">DL = 81h: drive D:</text>
+<text x="35" y="171" font-size="11.5" class="t2">DS:SI: the packet</text>
+<rect x="193" y="104" width="156" height="80" rx="6" class="box"/>
+<text x="204" y="124" font-size="12.5" class="b">Vector 13h</text>
+<text x="204" y="142" font-size="11.5" class="t2">0000:004C holds</text>
+<text x="204" y="156.5" font-size="11.5" class="t2">F000:EC59, set</text>
+<text x="204" y="171" font-size="11.5" class="t2">by POST</text>
+<rect x="362" y="104" width="156" height="80" rx="6" class="box"/>
+<text x="373" y="124" font-size="12.5" class="b">ROM stub</text>
+<text x="373" y="142" font-size="11.5" class="mono t2">F1 13   hypercall</text>
+<text x="373" y="156.5" font-size="11.5" class="mono t2">CF      IRET</text>
+<rect x="531" y="104" width="156" height="80" rx="6" class="acc"/>
+<text x="542" y="124" font-size="12.5" class="b">CPU core</text>
+<text x="542" y="142" font-size="11.5" class="t2">opcode F1 with</text>
+<text x="542" y="156.5" font-size="11.5" class="t2">CS = F000h, in real</text>
+<text x="542" y="171" font-size="11.5" class="t2">or V86 mode: call C</text>
+<rect x="700" y="104" width="156" height="80" rx="6" class="acc"/>
+<text x="711" y="124" font-size="12.5" class="b">disk_int13()</text>
+<text x="711" y="142" font-size="11.5" class="t2">native C: sectors</text>
+<text x="711" y="156.5" font-size="11.5" class="t2">into the caller's</text>
+<text x="711" y="171" font-size="11.5" class="t2">buffer; AH, CF set</text>
+<path d="M180,144 L191,144" class="ln"/>
+<path d="M191,144L183.0,140.4L183.0,147.6z" class="hd"/>
+<path d="M349,144 L360,144" class="ln"/>
+<path d="M360,144L352.0,140.4L352.0,147.6z" class="hd"/>
+<path d="M518,144 L529,144" class="ln"/>
+<path d="M529,144L521.0,140.4L521.0,147.6z" class="hd"/>
+<path d="M687,144 L698,144" class="ln"/>
+<path d="M698,144L690.0,140.4L690.0,147.6z" class="hd"/>
+<path d="M778,184 L778,204 L102,204 L102,186" class="ln"/>
+<path d="M102,186L98.4,194.0L105.6,194.0z" class="hd"/>
+<text x="440" y="220" font-size="11.5" class="tm" text-anchor="middle">back in the stub, IRET returns to the caller with the results in its registers</text>
+<text x="24" y="256" font-size="12.5" class="b">Entry points in the ROM (segment F000h)</text>
+<rect x="24" y="268" width="200.5" height="42" rx="6" class="box"/>
+<text x="35" y="285" font-size="12" class="mono b">FFF0</text>
+<text x="78" y="285" font-size="12" class="b">reset</text>
+<text x="35" y="301" font-size="11.5" class="mono t2">JMP F000:E05B</text>
+<rect x="234.5" y="268" width="200.5" height="42" rx="6" class="box"/>
+<text x="245.5" y="285" font-size="12" class="mono b">E05B</text>
+<text x="288.5" y="285" font-size="12" class="b">POST</text>
+<text x="245.5" y="301" font-size="11.5" class="mono t2">F1 E0  post()</text>
+<rect x="445" y="268" width="200.5" height="42" rx="6" class="box"/>
+<text x="456" y="285" font-size="12" class="mono b">E6F2</text>
+<text x="499" y="285" font-size="12" class="b">INT 19h, boot</text>
+<text x="456" y="301" font-size="11.5" class="mono t2">F1 E1  disk_boot()</text>
+<rect x="655.5" y="268" width="200.5" height="42" rx="6" class="box"/>
+<text x="666.5" y="285" font-size="12" class="mono b">F065</text>
+<text x="709.5" y="285" font-size="12" class="b">INT 10h, video</text>
+<text x="666.5" y="301" font-size="11.5" class="mono t2">F1 10  bios_int10()</text>
+<rect x="24" y="318" width="200.5" height="42" rx="6" class="box"/>
+<text x="35" y="335" font-size="12" class="mono b">EC59</text>
+<text x="78" y="335" font-size="12" class="b">INT 13h, disk</text>
+<text x="35" y="351" font-size="11.5" class="mono t2">F1 13  disk_int13()</text>
+<rect x="234.5" y="318" width="200.5" height="42" rx="6" class="box"/>
+<text x="245.5" y="335" font-size="12" class="mono b">E82E</text>
+<text x="288.5" y="335" font-size="12" class="b">INT 16h, keyboard</text>
+<text x="245.5" y="351" font-size="11.5" class="mono t2">F1 16  int16()</text>
+<rect x="445" y="318" width="200.5" height="42" rx="6" class="box"/>
+<text x="456" y="335" font-size="12" class="mono b">E987</text>
+<text x="499" y="335" font-size="12" class="b">INT 9, IRQ 1</text>
+<text x="456" y="351" font-size="11.5" class="mono t2">IN, INT 15h, F1 E2</text>
+<rect x="655.5" y="318" width="200.5" height="42" rx="6" class="box"/>
+<text x="666.5" y="335" font-size="12" class="mono b">FEA5</text>
+<text x="709.5" y="335" font-size="12" class="b">INT 8, IRQ 0</text>
+<text x="666.5" y="351" font-size="11.5" class="mono t2">F1 E3, INT 1Ch</text>
+<rect x="24" y="368" width="200.5" height="42" rx="6" class="box"/>
+<text x="35" y="385" font-size="12" class="mono b">FE6E</text>
+<text x="78" y="385" font-size="12" class="b">INT 1Ah, clock</text>
+<text x="35" y="401" font-size="11.5" class="mono t2">F1 1A  int1a()</text>
+<rect x="234.5" y="368" width="200.5" height="42" rx="6" class="box"/>
+<text x="245.5" y="385" font-size="12" class="mono b">F859</text>
+<text x="288.5" y="385" font-size="12" class="b">INT 15h, system</text>
+<text x="245.5" y="401" font-size="11.5" class="mono t2">F1 15  int15()</text>
+<rect x="445" y="368" width="200.5" height="42" rx="6" class="box"/>
+<text x="456" y="385" font-size="12" class="b">EMS entry (EMM.SYS)</text>
+<text x="456" y="401" font-size="11.5" class="mono t2">F1 E7  ems_call()</text>
+<rect x="655.5" y="368" width="200.5" height="42" rx="6" class="box"/>
+<text x="666.5" y="385" font-size="12" class="b">XMS entry (XMS.SYS)</text>
+<text x="666.5" y="401" font-size="11.5" class="mono t2">F1 E8  xms_call()</text>
+<text x="24" y="438" font-size="12.5" class="b">A key press: hardware interrupts still run x86 code</text>
+<rect x="24" y="450" width="156" height="80" rx="6" class="box"/>
+<text x="35" y="470" font-size="12.5" class="b">USB keyboard</text>
+<text x="35" y="488" font-size="11.5" class="t2">HID report on core 0,</text>
+<text x="35" y="502.5" font-size="11.5" class="t2">diffed into XT</text>
+<text x="35" y="517" font-size="11.5" class="t2">scancodes, queued</text>
+<rect x="193" y="450" width="156" height="80" rx="6" class="acc"/>
+<text x="204" y="470" font-size="12.5" class="b">Keyboard port</text>
+<text x="204" y="488" font-size="11.5" class="t2">scancode at port 60h;</text>
+<text x="204" y="502.5" font-size="11.5" class="t2">IRQ 1 through the</text>
+<text x="204" y="517" font-size="11.5" class="t2">emulated PIC</text>
+<rect x="362" y="450" width="156" height="80" rx="6" class="box"/>
+<text x="373" y="470" font-size="12.5" class="b">INT 9 stub</text>
+<text x="373" y="488" font-size="11.5" class="mono t2">IN AL,60h</text>
+<text x="373" y="502.5" font-size="11.5" class="mono t2">INT 15h AH=4Fh</text>
+<text x="373" y="517" font-size="11.5" class="mono t2">F1 E2, EOI, IRET</text>
+<rect x="531" y="450" width="156" height="80" rx="6" class="acc"/>
+<text x="542" y="470" font-size="12.5" class="b">key_process()</text>
+<text x="542" y="488" font-size="11.5" class="t2">shift flags and the</text>
+<text x="542" y="502.5" font-size="11.5" class="t2">BIOS keyboard buffer</text>
+<text x="542" y="517" font-size="11.5" class="t2">at 0040:001E</text>
+<rect x="700" y="450" width="156" height="80" rx="6" class="acc"/>
+<text x="711" y="470" font-size="12.5" class="b">INT 16h</text>
+<text x="711" y="488" font-size="11.5" class="t2">F1 16 reads the</text>
+<text x="711" y="502.5" font-size="11.5" class="t2">buffer; AH=0 parks</text>
+<text x="711" y="517" font-size="11.5" class="t2">the CPU until a key</text>
+<path d="M180,490 L191,490" class="ln"/>
+<path d="M191,490L183.0,486.4L183.0,493.6z" class="hd"/>
+<path d="M349,490 L360,490" class="ln"/>
+<path d="M360,490L352.0,486.4L352.0,493.6z" class="hd"/>
+<path d="M518,490 L529,490" class="ln"/>
+<path d="M529,490L521.0,486.4L521.0,493.6z" class="hd"/>
+<path d="M687,490 L698,490" class="ln"/>
+<path d="M698,490L690.0,486.4L690.0,493.6z" class="hd"/>
+<text x="24" y="556" font-size="11.5" class="tm">A program that hooks INT 9, 8, 1Ch or 15h sees what it would on a PC: hardware interrupts reach the C code only through these stubs.</text>
+</svg>

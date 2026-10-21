@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 290" width="880" height="290" role="img" aria-labelledby="t d">
+<title id="t">Display path</title>
+<desc id="d">The emulator task on core 1 writes guest video memory. The display task on core 0 runs render_update every 25 ms: it compares video memory with a shadow copy, redraws only what changed, scaled by integers and rotated, straight into the panel driver's 800x1280 RGB565 frame buffer in PSRAM; the touched rows are written back from the cache and the JD9365 panel scans the buffer out over MIPI-DSI at about 52 Hz (old glass) or 60 Hz (new glass).</desc>
+<style>.bg{fill:#fcfcfb;stroke:#e1e0d9}text{font-family:system-ui,-apple-system,"Segoe UI",Helvetica,Arial,sans-serif;fill:#0b0b0b}.t2{fill:#52514e}.tm{fill:#898781}.grid{stroke:#e1e0d9}.axis{stroke:#c3c2b7}.box{fill:#f3f2ee;stroke:#c3c2b7}.acc{fill:#e3eefc;stroke:#2a78d6}.band{fill:#f7f6f3;stroke:#e1e0d9}.s1{fill:#2a78d6}.s2{fill:#eb6834}.s3{fill:#1baf7a}.s4{fill:#eda100}.free{fill:#dddcd5}.prev{fill:#b9b8b0}.w1{fill:#dbe9fb}.w2{fill:#fbe3d8}.w3{fill:#d5f1e6}.w0{fill:#eeede8}.ln{stroke:#52514e;fill:none}.hd{fill:#52514e}.lead{stroke:#898781;fill:none}.gap{stroke:#fcfcfb}.mono{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace}.b{font-weight:600}.ln{stroke-width:1.4}.lead{stroke-width:1}.bg{stroke-width:1}.box,.acc,.band{stroke-width:1}.grid,.axis{stroke-width:1}@media (prefers-color-scheme:dark){.bg{fill:#1a1a19;stroke:#2c2c2a}text{font-family:system-ui,-apple-system,"Segoe UI",Helvetica,Arial,sans-serif;fill:#f0efec}.t2{fill:#c3c2b7}.tm{fill:#898781}.grid{stroke:#2c2c2a}.axis{stroke:#45453f}.box{fill:#252524;stroke:#4a4a45}.acc{fill:#14273f;stroke:#3987e5}.band{fill:#20201f;stroke:#2c2c2a}.s1{fill:#3987e5}.s2{fill:#d95926}.s3{fill:#199e70}.s4{fill:#c98500}.free{fill:#3a3a37}.prev{fill:#5d5c57}.w1{fill:#172c47}.w2{fill:#43241a}.w3{fill:#12362a}.w0{fill:#2a2a28}.ln{stroke:#c3c2b7;fill:none}.hd{fill:#c3c2b7}.lead{stroke:#898781;fill:none}.gap{stroke:#1a1a19}}</style>
+<rect x="0.5" y="0.5" width="879" height="289" rx="10" class="bg"/>
+<text x="24" y="32" font-size="16" class="b">Display path</text>
+<text x="24" y="52" font-size="12.5" class="t2">No LVGL, no second buffer: the renderer draws straight into the panel's frame buffer.</text>
+<rect x="24" y="78" width="148" height="96" rx="6" class="box"/>
+<text x="35" y="98" font-size="12.5" class="b">Guest video memory</text>
+<text x="35" y="116" font-size="11.5" class="t2">text at B8000,</text>
+<text x="35" y="130.5" font-size="11.5" class="t2">256 colours at A0000,</text>
+<text x="35" y="145" font-size="11.5" class="t2">16 colours and Mode X</text>
+<text x="35" y="159.5" font-size="11.5" class="t2">in 4 planes of 64 KB</text>
+<rect x="195" y="78" width="148" height="96" rx="6" class="acc"/>
+<text x="206" y="98" font-size="12.5" class="b">render_update()</text>
+<text x="206" y="116" font-size="11.5" class="t2">compare with a</text>
+<text x="206" y="130.5" font-size="11.5" class="t2">shadow copy, redraw</text>
+<text x="206" y="145" font-size="11.5" class="t2">changed cells and</text>
+<text x="206" y="159.5" font-size="11.5" class="t2">pixel columns only</text>
+<rect x="366" y="78" width="148" height="96" rx="6" class="acc"/>
+<text x="377" y="98" font-size="12.5" class="b">Scale and rotate</text>
+<text x="377" y="116" font-size="11.5" class="t2">integer scale to</text>
+<text x="377" y="130.5" font-size="11.5" class="t2">1280×800, written</text>
+<text x="377" y="145" font-size="11.5" class="t2">turned by 90°: one</text>
+<text x="377" y="159.5" font-size="11.5" class="t2">row = one column</text>
+<rect x="537" y="78" width="148" height="96" rx="6" class="acc"/>
+<text x="548" y="98" font-size="12.5" class="b">Frame buffer</text>
+<text x="548" y="116" font-size="11.5" class="t2">800×1280 RGB565,</text>
+<text x="548" y="130.5" font-size="11.5" class="t2">2 MB in PSRAM,</text>
+<text x="548" y="145" font-size="11.5" class="t2">owned by the DPI</text>
+<text x="548" y="159.5" font-size="11.5" class="t2">panel driver</text>
+<rect x="708" y="78" width="148" height="96" rx="6" class="box"/>
+<text x="719" y="98" font-size="12.5" class="b">JD9365 panel</text>
+<text x="719" y="116" font-size="11.5" class="t2">MIPI-DSI, 2 lanes;</text>
+<text x="719" y="130.5" font-size="11.5" class="t2">scans the buffer out</text>
+<text x="719" y="145" font-size="11.5" class="t2">at 52 Hz (old glass)</text>
+<text x="719" y="159.5" font-size="11.5" class="t2">or 60 Hz (new glass)</text>
+<path d="M172,126 L193,126" class="ln"/>
+<path d="M193,126L185.0,122.4L185.0,129.6z" class="hd"/>
+<path d="M343,126 L364,126" class="ln"/>
+<path d="M364,126L356.0,122.4L356.0,129.6z" class="hd"/>
+<path d="M514,126 L535,126" class="ln"/>
+<path d="M535,126L527.0,122.4L527.0,129.6z" class="hd"/>
+<path d="M685,126 L706,126" class="ln"/>
+<path d="M706,126L698.0,122.4L698.0,129.6z" class="hd"/>
+<rect x="24" y="196" width="148" height="30" rx="6" class="band"/>
+<text x="98" y="215" font-size="11.5" class="t2" text-anchor="middle">emulator task, core 1</text>
+<rect x="195" y="196" width="490" height="30" rx="6" class="band"/>
+<text x="440" y="215" font-size="11.5" class="t2" text-anchor="middle">display task, core 0, every 25 ms; a full 320×200 redraw takes about 40 ms</text>
+<rect x="708" y="196" width="148" height="30" rx="6" class="band"/>
+<text x="782" y="215" font-size="11.5" class="t2" text-anchor="middle">DSI controller</text>
+<text x="24" y="256" font-size="11.5" class="tm">Only the frame buffer rows that were touched are handed to esp_lcd_panel_draw_bitmap(), which for a pointer inside its own</text>
+<text x="24" y="271" font-size="11.5" class="tm">buffer just writes the cache back.</text>
+</svg>

@@ -1,0 +1,100 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 566" width="880" height="566" role="img" aria-labelledby="t d">
+<title id="t">Disks</title>
+<desc id="d">INT 13h, CHS or LBA, is served by disk.c on core 1, at most 64 sectors at a time through a 32 KB buffer. Drive 80h, C:, is the dosdisk flash partition behind a write-back cache of eight 4 KB blocks, committed when the guest idles and at least every 0.5 s. Drive 81h, D:, is the TF card on the SDMMC bus; a failed transfer restarts the card in the next mode and tries again: 4-bit bus at 20 MHz, 1-bit bus at 20, then 5 MHz; writes failing in the last mode make D: read-only. The card is probed at start-up and at every POST. Drive 82h is the host disk, served by tools/hostdisk.py through frames on the console line.</desc>
+<style>.bg{fill:#fcfcfb;stroke:#e1e0d9}text{font-family:system-ui,-apple-system,"Segoe UI",Helvetica,Arial,sans-serif;fill:#0b0b0b}.t2{fill:#52514e}.tm{fill:#898781}.grid{stroke:#e1e0d9}.axis{stroke:#c3c2b7}.box{fill:#f3f2ee;stroke:#c3c2b7}.acc{fill:#e3eefc;stroke:#2a78d6}.band{fill:#f7f6f3;stroke:#e1e0d9}.s1{fill:#2a78d6}.s2{fill:#eb6834}.s3{fill:#1baf7a}.s4{fill:#eda100}.free{fill:#dddcd5}.prev{fill:#b9b8b0}.w1{fill:#dbe9fb}.w2{fill:#fbe3d8}.w3{fill:#d5f1e6}.w0{fill:#eeede8}.ln{stroke:#52514e;fill:none}.hd{fill:#52514e}.lead{stroke:#898781;fill:none}.gap{stroke:#fcfcfb}.mono{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace}.b{font-weight:600}.ln{stroke-width:1.4}.lead{stroke-width:1}.bg{stroke-width:1}.box,.acc,.band{stroke-width:1}.grid,.axis{stroke-width:1}@media (prefers-color-scheme:dark){.bg{fill:#1a1a19;stroke:#2c2c2a}text{font-family:system-ui,-apple-system,"Segoe UI",Helvetica,Arial,sans-serif;fill:#f0efec}.t2{fill:#c3c2b7}.tm{fill:#898781}.grid{stroke:#2c2c2a}.axis{stroke:#45453f}.box{fill:#252524;stroke:#4a4a45}.acc{fill:#14273f;stroke:#3987e5}.band{fill:#20201f;stroke:#2c2c2a}.s1{fill:#3987e5}.s2{fill:#d95926}.s3{fill:#199e70}.s4{fill:#c98500}.free{fill:#3a3a37}.prev{fill:#5d5c57}.w1{fill:#172c47}.w2{fill:#43241a}.w3{fill:#12362a}.w0{fill:#2a2a28}.ln{stroke:#c3c2b7;fill:none}.hd{fill:#c3c2b7}.lead{stroke:#898781;fill:none}.gap{stroke:#1a1a19}}</style>
+<rect x="0.5" y="0.5" width="879" height="565" rx="10" class="bg"/>
+<text x="24" y="32" font-size="16" class="b">Disks</text>
+<text x="24" y="52" font-size="12.5" class="t2">INT 13h is served in C on core 1; behind it each drive is a block device.</text>
+<rect x="24" y="76" width="250" height="64" rx="6" class="box"/>
+<text x="35" y="96" font-size="12.5" class="b">INT 13h</text>
+<text x="35" y="114" font-size="11.5" class="t2">CHS (02h, 03h) or LBA</text>
+<text x="35" y="128.5" font-size="11.5" class="t2">extensions (42h, 43h)</text>
+<rect x="298" y="76" width="558" height="64" rx="6" class="acc"/>
+<text x="309" y="96" font-size="12.5" class="b">disk.c</text>
+<text x="309" y="114" font-size="11.5" class="t2">the drive by DL; at most 64 sectors at a time, through a 32 KB</text>
+<text x="309" y="128.5" font-size="11.5" class="t2">buffer in internal RAM, to and from guest memory</text>
+<path d="M274,108 L296,108" class="ln"/>
+<path d="M296,108L288.0,104.4L288.0,111.6z" class="hd"/>
+<path d="M577,140 V156 M157.333,156 H722.667" class="ln"/>
+<path d="M157.333,156 L157.333,176" class="ln"/>
+<path d="M157.333,176L160.9,168.0L153.7,168.0z" class="hd"/>
+<rect x="24" y="178" width="266.667" height="50" rx="6" class="acc"/>
+<text x="35" y="198" font-size="12.5" class="mono b">80h</text>
+<text x="72" y="198" font-size="12.5" class="b">C:  on-board flash</text>
+<text x="35" y="216" font-size="11.5" class="t2">the dosdisk partition, 14 MB</text>
+<path d="M157.333,228 L157.333,242" class="ln"/>
+<path d="M157.333,242L160.9,234.0L153.7,234.0z" class="hd"/>
+<path d="M440,156 L440,176" class="ln"/>
+<path d="M440,176L443.6,168.0L436.4,168.0z" class="hd"/>
+<rect x="306.667" y="178" width="266.667" height="50" rx="6" class="acc"/>
+<text x="317.667" y="198" font-size="12.5" class="mono b">81h</text>
+<text x="354.667" y="198" font-size="12.5" class="b">D:  TF card</text>
+<text x="317.667" y="216" font-size="11.5" class="t2">the whole card, FAT16 or FAT32</text>
+<path d="M440,228 L440,242" class="ln"/>
+<path d="M440,242L443.6,234.0L436.4,234.0z" class="hd"/>
+<path d="M722.667,156 L722.667,176" class="ln"/>
+<path d="M722.667,176L726.3,168.0L719.1,168.0z" class="hd"/>
+<rect x="589.333" y="178" width="266.667" height="50" rx="6" class="acc"/>
+<text x="600.333" y="198" font-size="12.5" class="mono b">82h</text>
+<text x="637.333" y="198" font-size="12.5" class="b">host disk</text>
+<text x="600.333" y="216" font-size="11.5" class="t2">an image on the PC (81h without a card)</text>
+<path d="M722.667,228 L722.667,242" class="ln"/>
+<path d="M722.667,242L726.3,234.0L719.1,234.0z" class="hd"/>
+<rect x="24" y="244" width="266.667" height="64" rx="6" class="box"/>
+<text x="35" y="264" font-size="12.5" class="b">Write-back cache</text>
+<text x="35" y="282" font-size="11.5" class="t2">8 blocks of 4 KB flash; sector writes</text>
+<text x="35" y="296.5" font-size="11.5" class="t2">land here</text>
+<rect x="24" y="328" width="266.667" height="106" rx="6" class="box"/>
+<text x="35" y="348" font-size="12.5" class="b">Commit</text>
+<text x="35" y="366" font-size="11.5" class="t2">when the guest idles, at least every</text>
+<text x="35" y="380.5" font-size="11.5" class="t2">0.5 s: unchanged blocks skipped,</text>
+<text x="35" y="395" font-size="11.5" class="t2">1→0-only changes written without</text>
+<text x="35" y="409.5" font-size="11.5" class="t2">erase, the rest erased first</text>
+<rect x="24" y="454" width="266.667" height="64" rx="6" class="box"/>
+<text x="35" y="474" font-size="12.5" class="b">Flash at 0x200000</text>
+<text x="35" y="492" font-size="11.5" class="t2">written in place; no wear levelling</text>
+<path d="M157.333,308 L157.333,326" class="ln"/>
+<path d="M157.333,326L160.9,318.0L153.7,318.0z" class="hd"/>
+<path d="M157.333,434 L157.333,452" class="ln"/>
+<path d="M157.333,452L160.9,444.0L153.7,444.0z" class="hd"/>
+<rect x="306.667" y="244" width="266.667" height="64" rx="6" class="box"/>
+<text x="317.667" y="264" font-size="12.5" class="b">SDMMC, 4-bit or 1-bit bus</text>
+<text x="317.667" y="282" font-size="11.5" class="t2">slot 0, GPIO39-44, powered from</text>
+<text x="317.667" y="296.5" font-size="11.5" class="t2">the P4's LDO channel 4</text>
+<rect x="306.667" y="328" width="266.667" height="106" rx="6" class="box"/>
+<text x="317.667" y="348" font-size="12.5" class="b">A transfer fails</text>
+<text x="317.667" y="366" font-size="11.5" class="t2">restarted in the next mode, tried</text>
+<text x="317.667" y="380.5" font-size="11.5" class="t2">again; if writes fail in the last,</text>
+<text x="317.667" y="395" font-size="11.5" class="t2">D: becomes read-only. Bus, MHz:</text>
+<rect x="317.667" y="402" width="66" height="22" rx="11" class="w1"/>
+<text x="350.667" y="417" font-size="11.5" text-anchor="middle">4-bit 20</text>
+<path d="M383.667,413 L401.667,413" class="ln"/>
+<path d="M401.667,413L393.7,409.4L393.7,416.6z" class="hd"/>
+<rect x="403.667" y="402" width="66" height="22" rx="11" class="w2"/>
+<text x="436.667" y="417" font-size="11.5" text-anchor="middle">1-bit 20</text>
+<path d="M469.667,413 L487.667,413" class="ln"/>
+<path d="M487.667,413L479.7,409.4L479.7,416.6z" class="hd"/>
+<rect x="489.667" y="402" width="66" height="22" rx="11" class="w2"/>
+<text x="522.667" y="417" font-size="11.5" text-anchor="middle">1-bit 5</text>
+<path d="M440,308 L440,326" class="ln"/>
+<path d="M440,326L443.6,318.0L436.4,318.0z" class="hd"/>
+<rect x="306.667" y="454" width="266.667" height="64" rx="6" class="box"/>
+<text x="317.667" y="474" font-size="12.5" class="b">Card changes</text>
+<text x="317.667" y="492" font-size="11.5" class="t2">probed at start-up and at every</text>
+<text x="317.667" y="506.5" font-size="11.5" class="t2">POST: Ctrl+Alt+Del picks up a card</text>
+<rect x="589.333" y="244" width="266.667" height="64" rx="6" class="box"/>
+<text x="600.333" y="264" font-size="12.5" class="b">Frames on the console line</text>
+<text x="600.333" y="282" font-size="11.5" class="t2">ESC _ H D, type, sequence, length,</text>
+<text x="600.333" y="296.5" font-size="11.5" class="t2">payload, CRC-32; 16 sectors each</text>
+<rect x="589.333" y="328" width="266.667" height="106" rx="6" class="box"/>
+<text x="600.333" y="348" font-size="12.5" class="b">One request in flight</text>
+<text x="600.333" y="366" font-size="11.5" class="t2">a lost frame is asked for again</text>
+<text x="600.333" y="380.5" font-size="11.5" class="t2">after 2 s; after 3 silences the drive</text>
+<text x="600.333" y="395" font-size="11.5" class="t2">reports errors instead of hanging</text>
+<text x="600.333" y="409.5" font-size="11.5" class="t2">DOS</text>
+<rect x="589.333" y="454" width="266.667" height="64" rx="6" class="box"/>
+<text x="600.333" y="474" font-size="12.5" class="b">tools/hostdisk.py on the PC</text>
+<text x="600.333" y="492" font-size="11.5" class="t2">a directory packed into a read-only</text>
+<text x="600.333" y="506.5" font-size="11.5" class="t2">image, or a writable image file</text>
+<text x="24" y="548" font-size="11.5" class="tm">The transfers run on core 1: the guest waits until they are done. Floppy images A: and B: exist only with P4DOS_SD_IMAGES.</text>
+</svg>

@@ -1,0 +1,105 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 448" width="880" height="448" role="img" aria-labelledby="t d">
+<title id="t">Sound Blaster 2.0 compatible sound</title>
+<desc id="d">A program resets the DSP at 226h, sets the rate with command 40h, programs DMA channel 1 and starts a block with command 14h; its IRQ 7 handler acknowledges at 22Eh. On core 1, sb.c decodes the commands, and at every slice generate() fetches the bytes due by DMA and converts them to 16-bit samples at 22050 Hz into a lock-free FIFO of 8192 samples; a block end raises IRQ 7. On core 0 the sound task takes 256 samples at a time through audio_render(), which adds the PC speaker and applies the volume, and writes them over I2S to the ES8311 codec and the NS4150 amplifier.</desc>
+<style>.bg{fill:#fcfcfb;stroke:#e1e0d9}text{font-family:system-ui,-apple-system,"Segoe UI",Helvetica,Arial,sans-serif;fill:#0b0b0b}.t2{fill:#52514e}.tm{fill:#898781}.grid{stroke:#e1e0d9}.axis{stroke:#c3c2b7}.box{fill:#f3f2ee;stroke:#c3c2b7}.acc{fill:#e3eefc;stroke:#2a78d6}.band{fill:#f7f6f3;stroke:#e1e0d9}.s1{fill:#2a78d6}.s2{fill:#eb6834}.s3{fill:#1baf7a}.s4{fill:#eda100}.free{fill:#dddcd5}.prev{fill:#b9b8b0}.w1{fill:#dbe9fb}.w2{fill:#fbe3d8}.w3{fill:#d5f1e6}.w0{fill:#eeede8}.ln{stroke:#52514e;fill:none}.hd{fill:#52514e}.lead{stroke:#898781;fill:none}.gap{stroke:#fcfcfb}.mono{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace}.b{font-weight:600}.ln{stroke-width:1.4}.lead{stroke-width:1}.bg{stroke-width:1}.box,.acc,.band{stroke-width:1}.grid,.axis{stroke-width:1}@media (prefers-color-scheme:dark){.bg{fill:#1a1a19;stroke:#2c2c2a}text{font-family:system-ui,-apple-system,"Segoe UI",Helvetica,Arial,sans-serif;fill:#f0efec}.t2{fill:#c3c2b7}.tm{fill:#898781}.grid{stroke:#2c2c2a}.axis{stroke:#45453f}.box{fill:#252524;stroke:#4a4a45}.acc{fill:#14273f;stroke:#3987e5}.band{fill:#20201f;stroke:#2c2c2a}.s1{fill:#3987e5}.s2{fill:#d95926}.s3{fill:#199e70}.s4{fill:#c98500}.free{fill:#3a3a37}.prev{fill:#5d5c57}.w1{fill:#172c47}.w2{fill:#43241a}.w3{fill:#12362a}.w0{fill:#2a2a28}.ln{stroke:#c3c2b7;fill:none}.hd{fill:#c3c2b7}.lead{stroke:#898781;fill:none}.gap{stroke:#1a1a19}}</style>
+<rect x="0.5" y="0.5" width="879" height="447" rx="10" class="bg"/>
+<text x="24" y="32" font-size="16" class="b">Sound Blaster 2.0 compatible sound</text>
+<text x="24" y="52" font-size="12.5" class="t2">The card plays in emulated time on core 1; core 0 takes the samples to the codec.</text>
+<text x="24" y="92" font-size="12.5" class="b">A program plays a block (x86, port I/O)</text>
+<rect x="24" y="104" width="156" height="54" rx="6" class="box"/>
+<text x="35" y="124" font-size="12.5" class="b">DSP reset</text>
+<text x="35" y="142" font-size="11.5" class="mono t2">226h ← 1, then 0</text>
+<rect x="193" y="104" width="156" height="54" rx="6" class="box"/>
+<text x="204" y="124" font-size="12.5" class="b">Sample rate</text>
+<text x="204" y="142" font-size="11.5" class="mono t2">22Ch ← 40h, tc</text>
+<rect x="362" y="104" width="156" height="54" rx="6" class="box"/>
+<text x="373" y="124" font-size="12.5" class="b">DMA channel 1</text>
+<text x="373" y="142" font-size="11.5" class="mono t2">02h 03h 83h 0Bh 0Ah</text>
+<rect x="531" y="104" width="156" height="54" rx="6" class="box"/>
+<text x="542" y="124" font-size="12.5" class="b">Start a block</text>
+<text x="542" y="142" font-size="11.5" class="mono t2">22Ch ← 14h, len</text>
+<rect x="700" y="104" width="156" height="54" rx="6" class="box"/>
+<text x="711" y="124" font-size="12.5" class="b">IRQ 7 handler</text>
+<text x="711" y="142" font-size="11.5" class="mono t2">22Eh: acknowledge</text>
+<path d="M180,131 L191,131" class="ln"/>
+<path d="M191,131L183.0,127.4L183.0,134.6z" class="hd"/>
+<path d="M349,131 L360,131" class="ln"/>
+<path d="M360,131L352.0,127.4L352.0,134.6z" class="hd"/>
+<path d="M518,131 L529,131" class="ln"/>
+<path d="M529,131L521.0,127.4L521.0,134.6z" class="hd"/>
+<path d="M687,131 L698,131" class="ln"/>
+<path d="M698,131L690.0,127.4L690.0,134.6z" class="hd"/>
+<text x="24" y="208" font-size="12.5" class="b">Core 1: sb.c, in emulated time</text>
+<rect x="24" y="220" width="156" height="80" rx="6" class="acc"/>
+<text x="35" y="240" font-size="12.5" class="b">DSP</text>
+<text x="35" y="258" font-size="11.5" class="t2">commands and their</text>
+<text x="35" y="272.5" font-size="11.5" class="t2">parameters at 22Ch:</text>
+<text x="35" y="287" font-size="11.5" class="t2">rate, length, play</text>
+<rect x="193" y="220" width="156" height="80" rx="6" class="acc"/>
+<text x="204" y="240" font-size="12.5" class="b">8237 DMA</text>
+<text x="204" y="258" font-size="11.5" class="t2">address, count, page;</text>
+<text x="204" y="272.5" font-size="11.5" class="t2">single-cycle or</text>
+<text x="204" y="287" font-size="11.5" class="t2">auto-init</text>
+<rect x="362" y="220" width="156" height="80" rx="6" class="acc"/>
+<text x="373" y="240" font-size="12.5" class="b">generate(now)</text>
+<text x="373" y="258" font-size="11.5" class="t2">each slice: the bytes</text>
+<text x="373" y="272.5" font-size="11.5" class="t2">due since last time,</text>
+<text x="373" y="287" font-size="11.5" class="t2">read by DMA</text>
+<rect x="531" y="220" width="156" height="80" rx="6" class="acc"/>
+<text x="542" y="240" font-size="12.5" class="b">Rate conversion</text>
+<text x="542" y="258" font-size="11.5" class="t2">8-bit samples at the</text>
+<text x="542" y="272.5" font-size="11.5" class="t2">program's rate to</text>
+<text x="542" y="287" font-size="11.5" class="t2">16-bit at 22050 Hz</text>
+<rect x="700" y="220" width="156" height="80" rx="6" class="acc"/>
+<text x="711" y="240" font-size="12.5" class="b">Audio FIFO</text>
+<text x="711" y="258" font-size="11.5" class="t2">8192 samples, one</text>
+<text x="711" y="272.5" font-size="11.5" class="t2">writer, one reader,</text>
+<text x="711" y="287" font-size="11.5" class="t2">no lock</text>
+<path d="M180,260 L191,260" class="ln"/>
+<path d="M191,260L183.0,256.4L183.0,263.6z" class="hd"/>
+<path d="M349,260 L360,260" class="ln"/>
+<path d="M360,260L352.0,256.4L352.0,263.6z" class="hd"/>
+<path d="M518,260 L529,260" class="ln"/>
+<path d="M529,260L521.0,256.4L521.0,263.6z" class="hd"/>
+<path d="M687,260 L698,260" class="ln"/>
+<path d="M698,260L690.0,256.4L690.0,263.6z" class="hd"/>
+<path d="M440,220 L440,184 L778,184 L778,160" class="ln"/>
+<path d="M778,160L774.4,168.0L781.6,168.0z" class="hd"/>
+<text x="450" y="179" font-size="11.5" class="tm">a block ends: IRQ 7 through the PIC</text>
+<text x="24" y="324" font-size="12.5" class="b">Core 0: task sound, then the board</text>
+<rect x="700" y="336" width="156" height="80" rx="6" class="box"/>
+<text x="711" y="356" font-size="12.5" class="b">audio_render()</text>
+<text x="711" y="374" font-size="11.5" class="t2">adds the PC speaker,</text>
+<text x="711" y="388.5" font-size="11.5" class="t2">applies the volume;</text>
+<text x="711" y="403" font-size="11.5" class="t2">45 ms primed first</text>
+<rect x="531" y="336" width="156" height="80" rx="6" class="box"/>
+<text x="542" y="356" font-size="12.5" class="b">sound task</text>
+<text x="542" y="374" font-size="11.5" class="t2">256 samples per</text>
+<text x="542" y="388.5" font-size="11.5" class="t2">write, priority 6;</text>
+<text x="542" y="403" font-size="11.5" class="t2">volume kept in NVS</text>
+<rect x="362" y="336" width="156" height="80" rx="6" class="box"/>
+<text x="373" y="356" font-size="12.5" class="b">I2S</text>
+<text x="373" y="374" font-size="11.5" class="t2">22050 Hz, 16-bit</text>
+<text x="373" y="388.5" font-size="11.5" class="t2">mono, GPIO 9, 10,</text>
+<text x="373" y="403" font-size="11.5" class="t2">12 and 13</text>
+<rect x="193" y="336" width="156" height="80" rx="6" class="box"/>
+<text x="204" y="356" font-size="12.5" class="b">ES8311 codec</text>
+<text x="204" y="374" font-size="11.5" class="t2">DAC, set up over</text>
+<text x="204" y="388.5" font-size="11.5" class="t2">I2C at address 18h</text>
+<rect x="24" y="336" width="156" height="80" rx="6" class="box"/>
+<text x="35" y="356" font-size="12.5" class="b">Amplifier</text>
+<text x="35" y="374" font-size="11.5" class="t2">NS4150, switched</text>
+<text x="35" y="388.5" font-size="11.5" class="t2">on by GPIO20;</text>
+<text x="35" y="403" font-size="11.5" class="t2">speaker connector</text>
+<path d="M778,300 L778,334" class="ln"/>
+<path d="M778,334L781.6,326.0L774.4,326.0z" class="hd"/>
+<path d="M700,376 L689,376" class="ln"/>
+<path d="M689,376L697.0,379.6L697.0,372.4z" class="hd"/>
+<path d="M531,376 L520,376" class="ln"/>
+<path d="M520,376L528.0,379.6L528.0,372.4z" class="hd"/>
+<path d="M362,376 L351,376" class="ln"/>
+<path d="M351,376L359.0,379.6L359.0,372.4z" class="hd"/>
+<path d="M193,376 L182,376" class="ln"/>
+<path d="M182,376L190.0,379.6L190.0,372.4z" class="hd"/>
+<text x="24" y="434" font-size="11.5" class="tm">On Linux the SDL audio callback takes the place of the sound task. FM music (AdLib, OPL2) is not emulated.</text>
+</svg>

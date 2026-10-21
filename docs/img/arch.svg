@@ -1,0 +1,85 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 520" width="880" height="520" role="img" aria-labelledby="t d">
+<title id="t">P4DOS architecture</title>
+<desc id="d">Unmodified x86 software (FreeDOS, drivers, DOS programs) runs on a portable emulator core: CPU and coprocessor, machine devices, a BIOS written in C, VGA and renderer, EMS and XMS, Sound Blaster, keyboard and mouse, terminal mirror. The core sits on hal.h, implemented by three ports: Linux host, bare-metal RISC-V under QEMU, and ESP-IDF on the ESP32-P4 board.</desc>
+<style>.bg{fill:#fcfcfb;stroke:#e1e0d9}text{font-family:system-ui,-apple-system,"Segoe UI",Helvetica,Arial,sans-serif;fill:#0b0b0b}.t2{fill:#52514e}.tm{fill:#898781}.grid{stroke:#e1e0d9}.axis{stroke:#c3c2b7}.box{fill:#f3f2ee;stroke:#c3c2b7}.acc{fill:#e3eefc;stroke:#2a78d6}.band{fill:#f7f6f3;stroke:#e1e0d9}.s1{fill:#2a78d6}.s2{fill:#eb6834}.s3{fill:#1baf7a}.s4{fill:#eda100}.free{fill:#dddcd5}.prev{fill:#b9b8b0}.w1{fill:#dbe9fb}.w2{fill:#fbe3d8}.w3{fill:#d5f1e6}.w0{fill:#eeede8}.ln{stroke:#52514e;fill:none}.hd{fill:#52514e}.lead{stroke:#898781;fill:none}.gap{stroke:#fcfcfb}.mono{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace}.b{font-weight:600}.ln{stroke-width:1.4}.lead{stroke-width:1}.bg{stroke-width:1}.box,.acc,.band{stroke-width:1}.grid,.axis{stroke-width:1}@media (prefers-color-scheme:dark){.bg{fill:#1a1a19;stroke:#2c2c2a}text{font-family:system-ui,-apple-system,"Segoe UI",Helvetica,Arial,sans-serif;fill:#f0efec}.t2{fill:#c3c2b7}.tm{fill:#898781}.grid{stroke:#2c2c2a}.axis{stroke:#45453f}.box{fill:#252524;stroke:#4a4a45}.acc{fill:#14273f;stroke:#3987e5}.band{fill:#20201f;stroke:#2c2c2a}.s1{fill:#3987e5}.s2{fill:#d95926}.s3{fill:#199e70}.s4{fill:#c98500}.free{fill:#3a3a37}.prev{fill:#5d5c57}.w1{fill:#172c47}.w2{fill:#43241a}.w3{fill:#12362a}.w0{fill:#2a2a28}.ln{stroke:#c3c2b7;fill:none}.hd{fill:#c3c2b7}.lead{stroke:#898781;fill:none}.gap{stroke:#1a1a19}}</style>
+<rect x="0.5" y="0.5" width="879" height="519" rx="10" class="bg"/>
+<text x="24" y="32" font-size="16" class="b">Architecture</text>
+<text x="24" y="52" font-size="12.5" class="t2">Stock FreeDOS on an emulated PC. One portable core behind hal.h, three ports.</text>
+<rect x="24" y="72" width="832" height="62" rx="8" class="band"/>
+<text x="38" y="94" font-size="12.5" class="b">Guest: unmodified x86 software</text>
+<rect x="38" y="104" width="188.75" height="22" rx="11" class="box"/>
+<text x="132.375" y="119" font-size="11.5" class="t2" text-anchor="middle">FreeDOS 1.3 kernel, FreeCOM</text>
+<rect x="236.75" y="104" width="170" height="22" rx="11" class="box"/>
+<text x="321.75" y="119" font-size="11.5" class="t2" text-anchor="middle">HIMEMX, EMM.SYS, CTMOUSE</text>
+<rect x="416.75" y="104" width="157.5" height="22" rx="11" class="box"/>
+<text x="495.5" y="119" font-size="11.5" class="t2" text-anchor="middle">DOS programs and games</text>
+<rect x="584.25" y="104" width="213.75" height="22" rx="11" class="box"/>
+<text x="691.125" y="119" font-size="11.5" class="t2" text-anchor="middle">DOS extenders: DOS/4GW, CWSDPMI</text>
+<path d="M440,134 L440,156" class="ln"/>
+<path d="M440,156L443.6,148.0L436.4,148.0z" class="hd"/>
+<text x="452" y="150" font-size="11.5" class="tm">x86 instructions, port I/O, interrupts</text>
+<rect x="24" y="158" width="832" height="216" rx="8" class="band"/>
+<text x="38" y="180" font-size="12.5" class="b">core/: portable C, no operating system calls</text>
+<rect x="38" y="192" width="190" height="80" rx="6" class="acc"/>
+<text x="49" y="212" font-size="12.5" class="b">CPU</text>
+<text x="49" y="230" font-size="11.5" class="t2">cpu.c: 8086, 80186, 80386</text>
+<text x="49" y="244.5" font-size="11.5" class="t2">interpreter</text>
+<text x="49" y="259" font-size="11.5" class="t2">cpu_fpu.h: 80387 on fx80.h</text>
+<rect x="242" y="192" width="190" height="80" rx="6" class="box"/>
+<text x="253" y="212" font-size="12.5" class="b">Machine</text>
+<text x="253" y="230" font-size="11.5" class="t2">pc.c: two PICs, PIT, A20,</text>
+<text x="253" y="244.5" font-size="11.5" class="t2">keyboard port, CMOS,</text>
+<text x="253" y="259" font-size="11.5" class="t2">port decoding, time</text>
+<rect x="446" y="192" width="190" height="80" rx="6" class="box"/>
+<text x="457" y="212" font-size="12.5" class="b">BIOS in C</text>
+<text x="457" y="230" font-size="11.5" class="t2">bios.c, biosvid.c, disk.c:</text>
+<text x="457" y="244.5" font-size="11.5" class="t2">INT 10h 13h 15h 16h 1Ah</text>
+<text x="457" y="259" font-size="11.5" class="t2">rom.c: entry stubs, fonts</text>
+<rect x="650" y="192" width="190" height="80" rx="6" class="box"/>
+<text x="661" y="212" font-size="12.5" class="b">Video</text>
+<text x="661" y="230" font-size="11.5" class="t2">video.c: VGA registers,</text>
+<text x="661" y="244.5" font-size="11.5" class="t2">planes, DAC</text>
+<text x="661" y="259" font-size="11.5" class="t2">render.c: scale and rotate</text>
+<rect x="38" y="282" width="190" height="80" rx="6" class="box"/>
+<text x="49" y="302" font-size="12.5" class="b">Memory managers</text>
+<text x="49" y="320" font-size="11.5" class="t2">ems.c: EMS 4.0 page frame</text>
+<text x="49" y="334.5" font-size="11.5" class="t2">xms.c: XMS 2.0 blocks</text>
+<text x="49" y="349" font-size="11.5" class="t2">(8086 / 80186 machines)</text>
+<rect x="242" y="282" width="190" height="80" rx="6" class="box"/>
+<text x="253" y="302" font-size="12.5" class="b">Sound</text>
+<text x="253" y="320" font-size="11.5" class="t2">sb.c: Sound Blaster 2.0 compatible,</text>
+<text x="253" y="334.5" font-size="11.5" class="t2">8237 DMA</text>
+<text x="253" y="349" font-size="11.5" class="t2">audio.c: mixer, PC speaker</text>
+<rect x="446" y="282" width="190" height="80" rx="6" class="box"/>
+<text x="457" y="302" font-size="12.5" class="b">Input</text>
+<text x="457" y="320" font-size="11.5" class="t2">kbd.c: USB HID or terminal</text>
+<text x="457" y="334.5" font-size="11.5" class="t2">bytes to scancodes</text>
+<text x="457" y="349" font-size="11.5" class="t2">uart.c: COM1 serial mouse</text>
+<rect x="650" y="282" width="190" height="80" rx="6" class="box"/>
+<text x="661" y="302" font-size="12.5" class="b">Console mirror</text>
+<text x="661" y="320" font-size="11.5" class="t2">term.c: the text screen as</text>
+<text x="661" y="334.5" font-size="11.5" class="t2">ANSI output, changed</text>
+<text x="661" y="349" font-size="11.5" class="t2">cells only</text>
+<path d="M440,374 L440,392" class="ln"/>
+<path d="M440,392L443.6,384.0L436.4,384.0z" class="hd"/>
+<rect x="24" y="394" width="832" height="30" rx="6" class="box"/>
+<text x="440" y="414" font-size="12.5" text-anchor="middle">hal.h: clock, idle wait, block devices, log, input lock</text>
+<path d="M158,424 L158,444" class="ln"/>
+<path d="M158,444L161.6,436.0L154.4,436.0z" class="hd"/>
+<rect x="24" y="446" width="268" height="62" rx="6" class="box"/>
+<text x="35" y="466" font-size="12.5" class="b">port/host</text>
+<text x="35" y="484" font-size="11.5" class="t2">Linux: terminal, SDL2 window,</text>
+<text x="35" y="498.5" font-size="11.5" class="t2">scripted tests in virtual time</text>
+<path d="M440,424 L440,444" class="ln"/>
+<path d="M440,444L443.6,436.0L436.4,436.0z" class="hd"/>
+<rect x="306" y="446" width="268" height="62" rx="6" class="box"/>
+<text x="317" y="466" font-size="12.5" class="b">port/rv32virt</text>
+<text x="317" y="484" font-size="11.5" class="t2">bare-metal RV32 under QEMU:</text>
+<text x="317" y="498.5" font-size="11.5" class="t2">UART console, RAM disk</text>
+<path d="M722,424 L722,444" class="ln"/>
+<path d="M722,444L725.6,436.0L718.4,436.0z" class="hd"/>
+<rect x="588" y="446" width="268" height="62" rx="6" class="acc"/>
+<text x="599" y="466" font-size="12.5" class="b">port/guition</text>
+<text x="599" y="484" font-size="11.5" class="t2">ESP-IDF on the ESP32-P4: DSI panel,</text>
+<text x="599" y="498.5" font-size="11.5" class="t2">USB host, flash, TF card, codec, RTC</text>
+</svg>

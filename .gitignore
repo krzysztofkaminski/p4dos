@@ -1,0 +1,10 @@
+build/
+port/guition/build/
+port/guition/build-rev3/
+port/guition/sdkconfig.rev3
+toolchain/
+port/guition/sdkconfig
+port/guition/sdkconfig.old
+port/guition/managed_components/
+__pycache__/
+lpt1.out

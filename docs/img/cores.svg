@@ -1,0 +1,85 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 472" width="880" height="472" role="img" aria-labelledby="t d">
+<title id="t">The two cores on the board</title>
+<desc id="d">Core 1 runs only the emulator task. Core 0 runs the display, sound, USB host and console tasks. They meet in shared memory: video memory written by the emulator and read by the display task; a lock-free audio FIFO from the Sound Blaster to the sound task; an input queue from USB and the console to the keyboard port and COM1; and host disk frames between INT 13h and the console.</desc>
+<style>.bg{fill:#fcfcfb;stroke:#e1e0d9}text{font-family:system-ui,-apple-system,"Segoe UI",Helvetica,Arial,sans-serif;fill:#0b0b0b}.t2{fill:#52514e}.tm{fill:#898781}.grid{stroke:#e1e0d9}.axis{stroke:#c3c2b7}.box{fill:#f3f2ee;stroke:#c3c2b7}.acc{fill:#e3eefc;stroke:#2a78d6}.band{fill:#f7f6f3;stroke:#e1e0d9}.s1{fill:#2a78d6}.s2{fill:#eb6834}.s3{fill:#1baf7a}.s4{fill:#eda100}.free{fill:#dddcd5}.prev{fill:#b9b8b0}.w1{fill:#dbe9fb}.w2{fill:#fbe3d8}.w3{fill:#d5f1e6}.w0{fill:#eeede8}.ln{stroke:#52514e;fill:none}.hd{fill:#52514e}.lead{stroke:#898781;fill:none}.gap{stroke:#fcfcfb}.mono{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace}.b{font-weight:600}.ln{stroke-width:1.4}.lead{stroke-width:1}.bg{stroke-width:1}.box,.acc,.band{stroke-width:1}.grid,.axis{stroke-width:1}@media (prefers-color-scheme:dark){.bg{fill:#1a1a19;stroke:#2c2c2a}text{font-family:system-ui,-apple-system,"Segoe UI",Helvetica,Arial,sans-serif;fill:#f0efec}.t2{fill:#c3c2b7}.tm{fill:#898781}.grid{stroke:#2c2c2a}.axis{stroke:#45453f}.box{fill:#252524;stroke:#4a4a45}.acc{fill:#14273f;stroke:#3987e5}.band{fill:#20201f;stroke:#2c2c2a}.s1{fill:#3987e5}.s2{fill:#d95926}.s3{fill:#199e70}.s4{fill:#c98500}.free{fill:#3a3a37}.prev{fill:#5d5c57}.w1{fill:#172c47}.w2{fill:#43241a}.w3{fill:#12362a}.w0{fill:#2a2a28}.ln{stroke:#c3c2b7;fill:none}.hd{fill:#c3c2b7}.lead{stroke:#898781;fill:none}.gap{stroke:#1a1a19}}</style>
+<rect x="0.5" y="0.5" width="879" height="471" rx="10" class="bg"/>
+<text x="24" y="32" font-size="16" class="b">The two cores</text>
+<text x="24" y="52" font-size="12.5" class="t2">Core 1 runs only the emulator and sleeps when the guest idles; core 0 runs everything else. They meet in shared memory.</text>
+<rect x="24" y="76" width="262" height="354" rx="8" class="band"/>
+<text x="36" y="97" font-size="12.5" class="b">Core 1: task emu, priority 5</text>
+<rect x="306" y="76" width="268" height="354" rx="8" class="band"/>
+<text x="318" y="97" font-size="12.5" class="b">Shared memory</text>
+<rect x="594" y="76" width="262" height="354" rx="8" class="band"/>
+<text x="606" y="97" font-size="12.5" class="b">Core 0: the other tasks</text>
+<rect x="36" y="112" width="238" height="66" rx="6" class="box"/>
+<text x="47" y="132" font-size="12.5" class="b">Interpreter and VGA</text>
+<text x="47" y="150" font-size="11.5" class="t2">x86 code writes video memory:</text>
+<text x="47" y="164.5" font-size="11.5" class="t2">text, planes, DAC palette</text>
+<rect x="318" y="112" width="244" height="66" rx="6" class="acc"/>
+<text x="329" y="132" font-size="12.5" class="b">Video memory</text>
+<text x="329" y="150" font-size="11.5" class="t2">A0000-BFFFF in guest RAM and</text>
+<text x="329" y="164.5" font-size="11.5" class="t2">the four VGA planes, in PSRAM</text>
+<rect x="606" y="112" width="238" height="66" rx="6" class="box"/>
+<text x="617" y="132" font-size="12.5" class="b">display, every 25 ms</text>
+<text x="617" y="150" font-size="11.5" class="t2">redraws what changed into the</text>
+<text x="617" y="164.5" font-size="11.5" class="t2">frame buffer; rows go to DSI</text>
+<path d="M274,145 L316,145" class="ln"/>
+<path d="M316,145L308.0,141.4L308.0,148.6z" class="hd"/>
+<path d="M562,145 L604,145" class="ln"/>
+<path d="M604,145L596.0,141.4L596.0,148.6z" class="hd"/>
+<rect x="36" y="192" width="238" height="66" rx="6" class="box"/>
+<text x="47" y="212" font-size="12.5" class="b">Sound Blaster and DMA</text>
+<text x="47" y="230" font-size="11.5" class="t2">each slice: the bytes due, read</text>
+<text x="47" y="244.5" font-size="11.5" class="t2">by DMA, converted to 22050 Hz</text>
+<rect x="318" y="192" width="244" height="66" rx="6" class="acc"/>
+<text x="329" y="212" font-size="12.5" class="b">Audio FIFO</text>
+<text x="329" y="230" font-size="11.5" class="t2">8192 samples; one writer and</text>
+<text x="329" y="244.5" font-size="11.5" class="t2">one reader, no lock</text>
+<rect x="606" y="192" width="238" height="66" rx="6" class="box"/>
+<text x="617" y="212" font-size="12.5" class="b">sound, priority 6</text>
+<text x="617" y="230" font-size="11.5" class="t2">256 samples at a time, PC</text>
+<text x="617" y="244.5" font-size="11.5" class="t2">speaker, volume; I2S to ES8311</text>
+<path d="M274,225 L316,225" class="ln"/>
+<path d="M316,225L308.0,221.4L308.0,228.6z" class="hd"/>
+<path d="M562,225 L604,225" class="ln"/>
+<path d="M604,225L596.0,221.4L596.0,228.6z" class="hd"/>
+<rect x="36" y="272" width="238" height="66" rx="6" class="box"/>
+<text x="47" y="292" font-size="12.5" class="b">Keyboard port and COM1</text>
+<text x="47" y="310" font-size="11.5" class="t2">IRQ 1 and IRQ 4 from the queue;</text>
+<text x="47" y="324.5" font-size="11.5" class="t2">the BIOS keyboard code in C</text>
+<rect x="318" y="272" width="244" height="66" rx="6" class="acc"/>
+<text x="329" y="292" font-size="12.5" class="b">Input queue</text>
+<text x="329" y="310" font-size="11.5" class="t2">scancodes and mouse moves under</text>
+<text x="329" y="324.5" font-size="11.5" class="t2">a spinlock; a notify wakes core 1</text>
+<rect x="606" y="272" width="238" height="66" rx="6" class="box"/>
+<text x="617" y="292" font-size="12.5" class="b">usb_lib, usb_evt</text>
+<text x="617" y="310" font-size="11.5" class="t2">USB host: HID reports from</text>
+<text x="617" y="324.5" font-size="11.5" class="t2">keyboards and mice</text>
+<path d="M606,305 L564,305" class="ln"/>
+<path d="M564,305L572.0,308.6L572.0,301.4z" class="hd"/>
+<path d="M318,305 L276,305" class="ln"/>
+<path d="M276,305L284.0,308.6L284.0,301.4z" class="hd"/>
+<rect x="36" y="352" width="238" height="66" rx="6" class="box"/>
+<text x="47" y="372" font-size="12.5" class="b">INT 13h</text>
+<text x="47" y="390" font-size="11.5" class="t2">C: and D: are read and written</text>
+<text x="47" y="404.5" font-size="11.5" class="t2">here; the host disk by frames</text>
+<rect x="318" y="352" width="244" height="66" rx="6" class="acc"/>
+<text x="329" y="372" font-size="12.5" class="b">Host disk frames</text>
+<text x="329" y="390" font-size="11.5" class="t2">requests out, sectors back, on</text>
+<text x="329" y="404.5" font-size="11.5" class="t2">the USB-Serial-JTAG line</text>
+<rect x="606" y="352" width="238" height="66" rx="6" class="box"/>
+<text x="617" y="372" font-size="12.5" class="b">console</text>
+<text x="617" y="390" font-size="11.5" class="t2">text screen out, keys in; host</text>
+<text x="617" y="404.5" font-size="11.5" class="t2">disk frames both ways</text>
+<path d="M274,380 L316,380" class="ln"/>
+<path d="M316,380L308.0,376.4L308.0,383.6z" class="hd"/>
+<path d="M318,390 L276,390" class="ln"/>
+<path d="M276,390L284.0,393.6L284.0,386.4z" class="hd"/>
+<path d="M562,380 L604,380" class="ln"/>
+<path d="M604,380L596.0,376.4L596.0,383.6z" class="hd"/>
+<path d="M606,390 L564,390" class="ln"/>
+<path d="M564,390L572.0,393.6L572.0,386.4z" class="hd"/>
+<path d="M606,362 L590,362 L590,326 L564,326" class="ln"/>
+<path d="M564,326L572.0,329.6L572.0,322.4z" class="hd"/>
+<text x="24" y="450" font-size="11.5" class="tm">Disk transfers to C: and D: run on core 1 and hold the guest up until they finish.</text>
+</svg>

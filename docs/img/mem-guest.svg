@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 470" width="880" height="470" role="img" aria-labelledby="t d">
+<title id="t">Memory map of the emulated PC</title>
+<desc id="d">From address 0: 640 KB conventional memory, 128 KB video memory at A0000, 128 KB not fitted, the 64 KB EMS page frame at E0000, the 64 KB BIOS ROM at F0000, the high memory area at 1 MB and 15 MB of extended memory up to 16 MB.</desc>
+<style>.bg{fill:#fcfcfb;stroke:#e1e0d9}text{font-family:system-ui,-apple-system,"Segoe UI",Helvetica,Arial,sans-serif;fill:#0b0b0b}.t2{fill:#52514e}.tm{fill:#898781}.grid{stroke:#e1e0d9}.axis{stroke:#c3c2b7}.box{fill:#f3f2ee;stroke:#c3c2b7}.acc{fill:#e3eefc;stroke:#2a78d6}.band{fill:#f7f6f3;stroke:#e1e0d9}.s1{fill:#2a78d6}.s2{fill:#eb6834}.s3{fill:#1baf7a}.s4{fill:#eda100}.free{fill:#dddcd5}.prev{fill:#b9b8b0}.w1{fill:#dbe9fb}.w2{fill:#fbe3d8}.w3{fill:#d5f1e6}.w0{fill:#eeede8}.ln{stroke:#52514e;fill:none}.hd{fill:#52514e}.lead{stroke:#898781;fill:none}.gap{stroke:#fcfcfb}.mono{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace}.b{font-weight:600}.ln{stroke-width:1.4}.lead{stroke-width:1}.bg{stroke-width:1}.box,.acc,.band{stroke-width:1}.grid,.axis{stroke-width:1}@media (prefers-color-scheme:dark){.bg{fill:#1a1a19;stroke:#2c2c2a}text{font-family:system-ui,-apple-system,"Segoe UI",Helvetica,Arial,sans-serif;fill:#f0efec}.t2{fill:#c3c2b7}.tm{fill:#898781}.grid{stroke:#2c2c2a}.axis{stroke:#45453f}.box{fill:#252524;stroke:#4a4a45}.acc{fill:#14273f;stroke:#3987e5}.band{fill:#20201f;stroke:#2c2c2a}.s1{fill:#3987e5}.s2{fill:#d95926}.s3{fill:#199e70}.s4{fill:#c98500}.free{fill:#3a3a37}.prev{fill:#5d5c57}.w1{fill:#172c47}.w2{fill:#43241a}.w3{fill:#12362a}.w0{fill:#2a2a28}.ln{stroke:#c3c2b7;fill:none}.hd{fill:#c3c2b7}.lead{stroke:#898781;fill:none}.gap{stroke:#1a1a19}}</style>
+<rect x="0.5" y="0.5" width="879" height="469" rx="10" class="bg"/>
+<text x="24" y="32" font-size="16" class="b">Memory map of the emulated PC</text>
+<text x="24" y="52" font-size="12.5" class="t2">Default machine: 80386DX with 16 MB. Not to scale. The whole map is one flat array in PSRAM;</text>
+<text x="24" y="68" font-size="12.5" class="t2">the planes of the planar video modes and the EMS pool are separate.</text>
+<rect x="24" y="82" width="12" height="12" rx="2" class="s1"/>
+<text x="42" y="92.5" font-size="12" class="t2">RAM</text>
+<rect x="81.7" y="82" width="12" height="12" rx="2" class="s2"/>
+<text x="99.7" y="92.5" font-size="12" class="t2">adapter memory (video, EMS frame)</text>
+<rect x="316.4" y="82" width="12" height="12" rx="2" class="s3"/>
+<text x="334.4" y="92.5" font-size="12" class="t2">ROM</text>
+<rect x="374.1" y="82" width="12" height="12" rx="2" class="free"/>
+<text x="392.1" y="92.5" font-size="12" class="t2">nothing</text>
+<text x="140" y="116" font-size="11.5" class="mono tm" text-anchor="end">1000000</text>
+<rect x="152" y="112" width="320" height="64" rx="3" class="w1"/>
+<rect x="152" y="112" width="5" height="64" class="s1"/>
+<text x="170" y="148.5" font-size="12.5" class="b">Extended memory</text>
+<text x="460" y="148.5" font-size="12" class="t2" text-anchor="end">15 MB</text>
+<text x="498" y="141" font-size="11.5" class="t2">XMS through HIMEMX; DPMI hosts and DOS</text>
+<text x="498" y="156" font-size="11.5" class="t2">extenders run their 32-bit code here</text>
+<line x1="480" y1="144" x2="488" y2="144" class="grid"/>
+<text x="140" y="181.5" font-size="11.5" class="mono tm" text-anchor="end">110000</text>
+<rect x="152" y="179" width="320" height="36" rx="3" class="w1"/>
+<rect x="152" y="179" width="5" height="36" class="s1"/>
+<text x="170" y="201.5" font-size="12.5" class="b">High memory area</text>
+<text x="460" y="201.5" font-size="12" class="t2" text-anchor="end">64 KB</text>
+<text x="498" y="194" font-size="11.5" class="t2">FreeDOS kernel and buffers (DOS=HIGH);</text>
+<text x="498" y="209" font-size="11.5" class="t2">wraps to address 0 while the A20 gate is off</text>
+<line x1="480" y1="197" x2="488" y2="197" class="grid"/>
+<text x="140" y="220.5" font-size="11.5" class="mono tm" text-anchor="end">100000</text>
+<rect x="152" y="218" width="320" height="36" rx="3" class="w3"/>
+<rect x="152" y="218" width="5" height="36" class="s3"/>
+<text x="170" y="240.5" font-size="12.5" class="b">BIOS ROM</text>
+<text x="460" y="240.5" font-size="12" class="t2" text-anchor="end">64 KB</text>
+<text x="498" y="233" font-size="11.5" class="t2">entry stubs at the IBM addresses, fonts,</text>
+<text x="498" y="248" font-size="11.5" class="t2">tables; the services run as native C</text>
+<line x1="480" y1="236" x2="488" y2="236" class="grid"/>
+<text x="140" y="259.5" font-size="11.5" class="mono tm" text-anchor="end">F0000</text>
+<rect x="152" y="257" width="320" height="36" rx="3" class="w2"/>
+<rect x="152" y="257" width="5" height="36" class="s2"/>
+<text x="170" y="279.5" font-size="12.5" class="b">EMS page frame</text>
+<text x="460" y="279.5" font-size="12" class="t2" text-anchor="end">64 KB</text>
+<text x="498" y="272" font-size="11.5" class="t2">four 16 KB pages, copied in and out of a</text>
+<text x="498" y="287" font-size="11.5" class="t2">separate 4 MB pool by EMM.SYS calls</text>
+<line x1="480" y1="275" x2="488" y2="275" class="grid"/>
+<text x="140" y="298.5" font-size="11.5" class="mono tm" text-anchor="end">E0000</text>
+<rect x="152" y="296" width="320" height="30" rx="3" class="w0"/>
+<rect x="152" y="296" width="5" height="30" class="free"/>
+<text x="170" y="315.5" font-size="12.5" class="b">Not fitted</text>
+<text x="460" y="315.5" font-size="12" class="t2" text-anchor="end">128 KB</text>
+<text x="498" y="315" font-size="11.5" class="t2">reads FFh</text>
+<line x1="480" y1="311" x2="488" y2="311" class="grid"/>
+<text x="140" y="331.5" font-size="11.5" class="mono tm" text-anchor="end">C0000</text>
+<rect x="152" y="329" width="320" height="44" rx="3" class="w2"/>
+<rect x="152" y="329" width="5" height="44" class="s2"/>
+<text x="170" y="355.5" font-size="12.5" class="b">Video memory</text>
+<text x="460" y="355.5" font-size="12" class="t2" text-anchor="end">128 KB</text>
+<text x="498" y="348" font-size="11.5" class="t2">A0000 graphics, B8000 text; planar modes</text>
+<text x="498" y="363" font-size="11.5" class="t2">go to four separate 64 KB planes</text>
+<line x1="480" y1="351" x2="488" y2="351" class="grid"/>
+<text x="140" y="378.5" font-size="11.5" class="mono tm" text-anchor="end">A0000</text>
+<rect x="152" y="376" width="320" height="64" rx="3" class="w1"/>
+<rect x="152" y="376" width="5" height="64" class="s1"/>
+<text x="170" y="412.5" font-size="12.5" class="b">Conventional memory</text>
+<text x="460" y="412.5" font-size="12" class="t2" text-anchor="end">640 KB</text>
+<text x="498" y="405" font-size="11.5" class="t2">interrupt vectors, BIOS data, DOS, programs;</text>
+<text x="498" y="420" font-size="11.5" class="t2">618 KB free at the prompt</text>
+<line x1="480" y1="408" x2="488" y2="408" class="grid"/>
+<text x="140" y="445.5" font-size="11.5" class="mono tm" text-anchor="end">00000</text>
+<text x="24" y="220.5" font-size="11.5" class="b">1 MB</text>
+<text x="24" y="116" font-size="11.5" class="b">16 MB</text>
+</svg>

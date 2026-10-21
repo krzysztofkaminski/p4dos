@@ -1,0 +1,49 @@
+# Guition JC8012P4A1C-I-W-Y: ESP32-P4 rev v1.3, 16 MB flash, 32 MB HEX PSRAM, JD9365
+# MIPI-DSI panel. Board settings follow the "Known-good settings" table in guition.md.
+CONFIG_IDF_TARGET="esp32p4"
+
+# Chip revision v1.3: without the <3.0 line the bootloader refuses to start.
+CONFIG_ESP32P4_SELECTS_REV_LESS_V3=y
+CONFIG_ESP32P4_REV_MIN_100=y
+
+# Flash
+CONFIG_ESPTOOLPY_FLASHMODE_QIO=y
+CONFIG_ESPTOOLPY_FLASHFREQ_80M=y
+CONFIG_ESPTOOLPY_FLASHSIZE_16MB=y
+CONFIG_PARTITION_TABLE_CUSTOM=y
+CONFIG_PARTITION_TABLE_CUSTOM_FILENAME="partitions.csv"
+
+# PSRAM. No XIP / instruction fetch / rodata from PSRAM: it carries the display frame
+# buffer and code fetches from it break the picture up into lines.
+CONFIG_SPIRAM=y
+CONFIG_SPIRAM_MODE_HEX=y
+CONFIG_SPIRAM_SPEED_200M=y
+# Static buffers marked EXT_RAM_BSS_ATTR (the renderer's) live in PSRAM.
+CONFIG_SPIRAM_ALLOW_BSS_SEG_EXTERNAL_MEMORY=y
+
+# L2 cache, from the vendor reference
+CONFIG_CACHE_L2_CACHE_256KB=y
+CONFIG_CACHE_L2_CACHE_LINE_128B=y
+
+# USB host (keyboard, mouse): DMA memory in PSRAM, as verified on this board.
+CONFIG_USB_HOST_DWC_DMA_CAP_MEMORY_IN_PSRAM=y
+CONFIG_USB_HOST_HUBS_SUPPORTED=y
+
+# Console on the upper USB-C port (USB-Serial-JTAG): the port used for flashing also
+# carries the log and the DOS serial console, input included.
+CONFIG_ESP_CONSOLE_USB_SERIAL_JTAG=y
+
+# Off since the removed JIT needed it, and every firmware so far has run this way; the
+# default (on) has not been tried on the board.
+CONFIG_ESP_SYSTEM_PMP_IDRAM_SPLIT=n
+
+# The emulator is a tight interpreter loop.
+CONFIG_COMPILER_OPTIMIZATION_PERF=y
+CONFIG_FREERTOS_HZ=1000
+# The emulator task owns core 1 and does not yield while the guest is busy.
+CONFIG_ESP_TASK_WDT_CHECK_IDLE_TASK_CPU1=n
+CONFIG_ESP_MAIN_TASK_STACK_SIZE=8192
+
+# TF card with disk image files
+CONFIG_FATFS_LFN_HEAP=y
+CONFIG_FATFS_USE_FASTSEEK=y

@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 372" width="880" height="372" role="img" aria-labelledby="t d">
+<title id="t">Where the board's memory goes</title>
+<desc id="d">PSRAM, 32 MB: guest RAM 16 MB, EMS pool 4 MB, frame buffer 2 MB, VGA planes 256 KB, the renderer's 64 KB, about 9.7 MB unallocated. Flash, 16 MB: 64 KB boot area, a 1.94 MB application slot holding the 0.82 MB firmware, and the 14 MB image of drive C:.</desc>
+<style>.bg{fill:#fcfcfb;stroke:#e1e0d9}text{font-family:system-ui,-apple-system,"Segoe UI",Helvetica,Arial,sans-serif;fill:#0b0b0b}.t2{fill:#52514e}.tm{fill:#898781}.grid{stroke:#e1e0d9}.axis{stroke:#c3c2b7}.box{fill:#f3f2ee;stroke:#c3c2b7}.acc{fill:#e3eefc;stroke:#2a78d6}.band{fill:#f7f6f3;stroke:#e1e0d9}.s1{fill:#2a78d6}.s2{fill:#eb6834}.s3{fill:#1baf7a}.s4{fill:#eda100}.free{fill:#dddcd5}.prev{fill:#b9b8b0}.w1{fill:#dbe9fb}.w2{fill:#fbe3d8}.w3{fill:#d5f1e6}.w0{fill:#eeede8}.ln{stroke:#52514e;fill:none}.hd{fill:#52514e}.lead{stroke:#898781;fill:none}.gap{stroke:#fcfcfb}.mono{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace}.b{font-weight:600}.ln{stroke-width:1.4}.lead{stroke-width:1}.bg{stroke-width:1}.box,.acc,.band{stroke-width:1}.grid,.axis{stroke-width:1}@media (prefers-color-scheme:dark){.bg{fill:#1a1a19;stroke:#2c2c2a}text{font-family:system-ui,-apple-system,"Segoe UI",Helvetica,Arial,sans-serif;fill:#f0efec}.t2{fill:#c3c2b7}.tm{fill:#898781}.grid{stroke:#2c2c2a}.axis{stroke:#45453f}.box{fill:#252524;stroke:#4a4a45}.acc{fill:#14273f;stroke:#3987e5}.band{fill:#20201f;stroke:#2c2c2a}.s1{fill:#3987e5}.s2{fill:#d95926}.s3{fill:#199e70}.s4{fill:#c98500}.free{fill:#3a3a37}.prev{fill:#5d5c57}.w1{fill:#172c47}.w2{fill:#43241a}.w3{fill:#12362a}.w0{fill:#2a2a28}.ln{stroke:#c3c2b7;fill:none}.hd{fill:#c3c2b7}.lead{stroke:#898781;fill:none}.gap{stroke:#1a1a19}}</style>
+<rect x="0.5" y="0.5" width="879" height="371" rx="10" class="bg"/>
+<text x="24" y="32" font-size="16" class="b">Where the board's memory goes</text>
+<text x="24" y="52" font-size="12.5" class="t2">To scale within each bar. Default configuration: 80386DX with 16 MB, 4 MB of EMS.</text>
+<text x="24" y="86" font-size="13" class="b">PSRAM  32 MB</text>
+<rect x="24" y="96" width="414" height="28" rx="2" class="s1"/>
+<rect x="440" y="96" width="102" height="28" rx="2" class="s2"/>
+<rect x="544" y="96" width="48.7812" height="28" rx="2" class="s3"/>
+<rect x="594.781" y="96" width="6.125" height="28" rx="2" class="s4"/>
+<rect x="602.906" y="96" width="251.094" height="28" rx="2" class="free"/>
+<rect x="24" y="136" width="10" height="10" rx="2" class="s1"/>
+<text x="39" y="146" font-size="12" class="b">Guest RAM  16 MB</text>
+<text x="24" y="162" font-size="11.5" class="t2">the PC's memory: 640 KB conventional, 15 MB extended</text>
+<rect x="440" y="136" width="10" height="10" rx="2" class="s2"/>
+<text x="455" y="146" font-size="12" class="b">EMS pool  4 MB</text>
+<text x="440" y="162" font-size="11.5" class="t2">expanded memory</text>
+<rect x="610.906" y="136" width="10" height="10" rx="2" class="free"/>
+<text x="625.906" y="146" font-size="12" class="b">Unallocated  9.7 MB</text>
+<text x="610.906" y="162" font-size="11.5" class="t2">heap: USB transfer buffers, spare</text>
+<path d="M568.391,126 V186" class="lead"/>
+<rect x="550.391" y="180" width="10" height="10" rx="2" class="s3"/>
+<text x="544.391" y="190" font-size="12" class="b" text-anchor="end">Frame buffer  2 MB</text>
+<text x="560.391" y="206" font-size="11.5" class="t2" text-anchor="end">800×1280 RGB565</text>
+<path d="M597.844,126 V186" class="lead"/>
+<rect x="605.844" y="180" width="10" height="10" rx="2" class="s4"/>
+<text x="620.844" y="190" font-size="12" class="b">VGA planes 256 KB, renderer 64 KB</text>
+<text x="605.844" y="206" font-size="11.5" class="t2">planar modes; the renderer's shadow copy</text>
+<text x="24" y="250" font-size="13" class="b">Flash  16 MB</text>
+<rect x="24" y="274" width="1.5" height="28" rx="2" class="s4"/>
+<rect x="27.25" y="274" width="40.1992" height="28" rx="2" class="s1"/>
+<rect x="69.4492" y="274" width="56.5508" height="28" rx="2" class="free"/>
+<rect x="128" y="274" width="726" height="28" rx="2" class="s2"/>
+<path d="M25.5,274 V262 H150" class="lead"/>
+<text x="155" y="266" font-size="11.5" class="t2">first 64 KB: bootloader, partition table, NVS (volume setting)</text>
+<rect x="27.25" y="314" width="10" height="10" rx="2" class="s1"/>
+<text x="42.25" y="324" font-size="12" class="b">App slot  1.94 MB</text>
+<text x="27.25" y="340" font-size="11.5" class="t2">firmware 0.82 MB, the rest spare</text>
+<rect x="238" y="314" width="10" height="10" rx="2" class="s2"/>
+<text x="253" y="324" font-size="12" class="b">Drive C:  14 MB</text>
+<text x="238" y="340" font-size="11.5" class="t2">FAT disk image, read and written in place by INT 13h</text>
+</svg>
